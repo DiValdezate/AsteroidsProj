@@ -1,0 +1,12 @@
+﻿  raudio.c
+C:\Dev\PACS\AsteroidsProj\raylib-master\src\external\jar_xm.h(242,1): warning C4005: 'DEBUG': redefinición de macro
+C:\Dev\PACS\AsteroidsProj\raylib-master\src\external\jar_xm.h(242,1): message : 'DEBUG' declarado previamente en la línea de comandos
+  rcore.c
+  rglfw.c
+  rmodels.c
+  rshapes.c
+  rtext.c
+  rtextures.c
+  utils.c
+  Generando código...
+  raylib.vcxproj -> C:\Dev\PACS\AsteroidsProj\_bin\Debug\raylib.lib
