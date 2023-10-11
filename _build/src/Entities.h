@@ -18,6 +18,7 @@ public:
 
 class Meteor
 {
+public:
 	enum Size
 	{
 		BIG,
@@ -29,7 +30,8 @@ class Meteor
 
 public:
 
-	Meteor();
+	Meteor(Size size);
+
 	void Hit();
 
 };
