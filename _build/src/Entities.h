@@ -33,6 +33,9 @@ public:
 	Meteor(Size size);
 
 	void Hit();
+	void GoMedium();
+	void GoSmall();
+	void Destroy();
 
 };
 

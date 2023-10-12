@@ -9,13 +9,24 @@ enum GameScreen
 	ENDING
 };
 
+//Variable declarations
+
+static GameScreen currentScreen;
+
+
 //Logo screen declarations
+void InitLogoScreen();
+void UpdateLogoScreen();
 
 //Title screen declarations
+void InitTitleScreen();
+void DrawTitle(Texture2D title);
 
 //Gameplay screen declarations
+void InitGamePlayScreen();
 
 //Ending screen declarations
+void InitEndingScreen();
 
 
 

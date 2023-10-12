@@ -15,9 +15,11 @@
     <ClCompile Include="src\Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Source.cpp">
+    <ClCompile Include="src\Meteor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Logo.cpp" />
+    <ClCompile Include="src\Title.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Entities.h">

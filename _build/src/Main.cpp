@@ -20,6 +20,9 @@
 #include "Screens.h"
 
 
+static int gameTime;
+Image titleImg;
+Texture2D titleText;
 
 
 //------------------------------------------------------------------------------------
@@ -32,9 +35,15 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
+
     InitWindow(screenWidth, screenHeight, "Asteroids");
+    gameTime = 0;
+    titleImg = LoadImage("resources/textures/Title.png");
+    titleText = LoadTextureFromImage(titleImg);
+    
 
     // TODO: Load resources / Initialize variables at this point
+    
 
     SetTargetFPS(60);
     //--------------------------------------------------------------------------------------
@@ -46,19 +55,58 @@ int main(void)
         //----------------------------------------------------------------------------------
         // TODO: Update variables / Implement example logic at this point
         //----------------------------------------------------------------------------------
+        switch (currentScreen)
+        {
+        case LOGO:
+            InitLogoScreen();
+            if (gameTime >= 120)
+                currentScreen = TITLE;
+
+            break;
+        case TITLE:
+            InitTitleScreen();
+            DrawText("hey", GetScreenWidth() / 2, GetScreenHeight() / 2,50,YELLOW);
+
+            break;
+        case GAMEPLAY:
+            break;
+
+        case ENDING:
+            break;
+
+        }
+
 
         // Draw
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-        ClearBackground(RAYWHITE);
+        switch (currentScreen)
+        {
+        case LOGO:
+            
+
+            break;
+        case TITLE:
+            DrawTitle(titleText);
+
+            break;
+        case GAMEPLAY:
+            break;
+
+        case ENDING:
+            break;
+
+        }
+
+        ClearBackground(LIGHTGRAY);
 
         // TODO: Draw everything that requires to be drawn at this point:
 
-        DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);  // Example
 
         EndDrawing();
         //----------------------------------------------------------------------------------
+        gameTime++;
     }
 
     // De-Initialization
