@@ -20,9 +20,10 @@
 #include "Screens.h"
 
 
-static int gameTime;
+int gameTime;
 Image titleImg;
 Texture2D titleText;
+int titleYAxis;
 
 
 //------------------------------------------------------------------------------------
@@ -40,6 +41,8 @@ int main(void)
     gameTime = 0;
     titleImg = LoadImage("resources/textures/Title.png");
     titleText = LoadTextureFromImage(titleImg);
+    titleYAxis = -250;
+
     
 
     // TODO: Load resources / Initialize variables at this point
@@ -87,8 +90,10 @@ int main(void)
             
 
             break;
-        case TITLE:
-            DrawTitle(titleText);
+        case TITLE:   
+            DrawTitle(titleText, titleYAxis);
+            titleYAxis++;
+            
 
             break;
         case GAMEPLAY:
