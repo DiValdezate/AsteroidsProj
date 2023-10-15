@@ -1,6 +1,9 @@
 #pragma once
 #include "Entities.h"
 
+#define MAX_METEORS 25
+#define MAX_MET_SIZE 3
+
 class GameplayManager
 {
 public:
@@ -11,8 +14,8 @@ public:
 
 	Image playerImg;
 	Texture2D playerTexture;
-	Image meteorImg;
-	Texture2D meteorTexture;
+	Image meteorImg[MAX_MET_SIZE];
+	Texture2D meteorTexture[MAX_MET_SIZE];
 
 public:
 
