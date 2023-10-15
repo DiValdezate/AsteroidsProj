@@ -18,8 +18,16 @@
     <ClCompile Include="src\Meteor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Logo.cpp" />
-    <ClCompile Include="src\Title.cpp" />
+    <ClCompile Include="src\Gameplay.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Logo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Title.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameplayManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Entities.h">
@@ -27,6 +35,9 @@
     </ClInclude>
     <ClInclude Include="src\Screens.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameplayManager.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

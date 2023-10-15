@@ -2,12 +2,8 @@
 #include "Entities.h"
 #include "Screens.h"
 
-
-
-
 Image titleImg;
 Texture2D titleText;
-
 
 void LoadTextTextures()
 {

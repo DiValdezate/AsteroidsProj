@@ -10,7 +10,6 @@ enum GameScreen
 };
 
 //Variable declarations
-
 static GameScreen currentScreen;
 
 
@@ -25,6 +24,8 @@ void DrawTitle(int y);
 
 //Gameplay screen declarations
 void InitGamePlayScreen();
+void LoadGameTextures();
+void DrawPlayer(Player* player);
 
 //Ending screen declarations
 void InitEndingScreen();

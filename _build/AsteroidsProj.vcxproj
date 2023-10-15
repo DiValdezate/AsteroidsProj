@@ -265,6 +265,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Gameplay.cpp" />
+    <ClCompile Include="src\GameplayManager.cpp" />
     <ClCompile Include="src\Logo.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Player.cpp" />
@@ -272,6 +274,7 @@
     <ClCompile Include="src\Title.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\GameplayManager.h" />
     <ClInclude Include="src\Entities.h" />
     <ClInclude Include="src\Screens.h" />
   </ItemGroup>

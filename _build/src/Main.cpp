@@ -18,11 +18,14 @@
 #include "raylib.h"
 #include "Entities.h"
 #include "Screens.h"
+#include "GameplayManager.h"
 
 
+//Variables declaration
 int gameTime;
-
 int titleYAxis;
+
+GameplayManager gamePlayManager;
 
 
 
@@ -38,18 +41,26 @@ int main(void)
 
     InitWindow(screenWidth, screenHeight, "Asteroids");
 
-    //Variable initialization
+    //Textures initialization
+    //--------------------------------------------------------------------------------------
+    LoadTextTextures();
+    LoadGameTextures();
+    gamePlayManager.LoadTextures();
+
+
+    
+
+    //Variables initialization
+    //--------------------------------------------------------------------------------------
     gameTime = 0;
     titleYAxis = -250;
-
-    //Textures initialization
-    LoadTextTextures();
+    
+    gamePlayManager.player.SetPosition(new Vector2({ screenWidth / 2, screenHeight / 2 }));
+    gamePlayManager.player.SetTexture(&gamePlayManager.playerTexture);
+    
     
 
-    
 
-    // TODO: Load resources / Initialize variables at this point
-    
 
     SetTargetFPS(60);
     //--------------------------------------------------------------------------------------
@@ -69,15 +80,21 @@ int main(void)
                 currentScreen = TITLE;
 
             break;
-        case TITLE:
-            
+        case TITLE:            
 
             if (gameTime >= 360 && gameTime % 60 == 0) //Text starts blinking at 6 seconds time.
                 DrawText("PRESS [ENTER] TO START", GetScreenWidth() / 2 - 200, GetScreenHeight() / 2,30,YELLOW);  
 
+            if (IsKeyPressed(KEY_ENTER))
+                currentScreen = GAMEPLAY;
+
             
             break;
         case GAMEPLAY:
+            DrawText("GAMEPLAY", GetScreenWidth() / 2 - 200, GetScreenHeight() / 2, 30, YELLOW);
+
+
+
             break;
 
         case ENDING:
@@ -104,6 +121,8 @@ int main(void)
 
             break;
         case GAMEPLAY:
+            DrawPlayer(&gamePlayManager.player);
+
             break;
 
         case ENDING:

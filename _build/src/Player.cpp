@@ -6,6 +6,18 @@ Player::Player(int lives)
 	{
 		this->lives = 3;
 	}
+
+	alive = true;
+	position = { 0 };
+	texture = { 0 };
+}
+
+Player::Player()
+{
+	lives = 3;
+	alive = true;
+	position = { 0 };
+	texture = { 0 };
 }
 
 int Player::GetLives()
@@ -21,9 +33,37 @@ void Player::SetLives(int lives)
 	}
 }
 
-void Player::SetPosition(Vector2 position)
+void Player::SetPosition(Vector2* position)
 {
-	this->position = position;
+	this->position = *position;
+}
+
+Vector2 Player::GetPosition()
+{
+	return position;
+}
+
+void Player::SetTexture(Texture2D* texture)
+{
+	if (texture != NULL)
+	{
+		this->texture = *texture;
+	}
+}
+
+Texture2D Player::GetTexture()
+{
+	return texture;
+}
+
+void Player::Kill()
+{
+	alive = false;	
+}
+
+bool Player::isAlive()
+{
+	return alive;
 }
 
 void Player::Hit()
