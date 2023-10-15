@@ -21,9 +21,9 @@
 
 
 int gameTime;
-Image titleImg;
-Texture2D titleText;
+
 int titleYAxis;
+
 
 
 //------------------------------------------------------------------------------------
@@ -36,12 +36,15 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-
     InitWindow(screenWidth, screenHeight, "Asteroids");
+
+    //Variable initialization
     gameTime = 0;
-    titleImg = LoadImage("resources/textures/Title.png");
-    titleText = LoadTextureFromImage(titleImg);
     titleYAxis = -250;
+
+    //Textures initialization
+    LoadTextTextures();
+    
 
     
 
@@ -67,9 +70,12 @@ int main(void)
 
             break;
         case TITLE:
-            InitTitleScreen();
-            DrawText("hey", GetScreenWidth() / 2, GetScreenHeight() / 2,50,YELLOW);
+            
 
+            if (gameTime >= 360 && gameTime % 60 == 0) //Text starts blinking at 6 seconds time.
+                DrawText("PRESS [ENTER] TO START", GetScreenWidth() / 2 - 200, GetScreenHeight() / 2,30,YELLOW);  
+
+            
             break;
         case GAMEPLAY:
             break;
@@ -90,10 +96,11 @@ int main(void)
             
 
             break;
-        case TITLE:   
-            DrawTitle(titleText, titleYAxis);
-            titleYAxis++;
-            
+        case TITLE:
+            DrawTitle(titleYAxis);
+
+            if (titleYAxis < -75)//This is the limit on the Y axis, when reached, the title texture stops moving. 
+                titleYAxis++;          
 
             break;
         case GAMEPLAY:

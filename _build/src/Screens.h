@@ -20,7 +20,8 @@ void UpdateLogoScreen();
 
 //Title screen declarations
 void InitTitleScreen();
-void DrawTitle(Texture2D title, int y);
+void LoadTextTextures();
+void DrawTitle(int y);
 
 //Gameplay screen declarations
 void InitGamePlayScreen();
