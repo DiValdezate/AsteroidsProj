@@ -17,6 +17,7 @@ Player::Player()
 {
 	lives = 3;
 	alive = true;
+	speed = { 1,1 };
 	position = { 0 };
 	texture = { 0 };
 }

@@ -22,6 +22,5 @@ public:
 	void LoadTextures();
 	void MeteorSpawner(std::vector<Meteor>* meteors);
 	void MoveMeteors(std::vector<Meteor>* meteors);
-
 };
 

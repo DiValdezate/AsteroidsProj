@@ -32,6 +32,7 @@ public:
 
 class Meteor
 {
+	bool destroyed;
 	Vector2 speed;
 	Vector2 position;
 	Texture2D texture;
@@ -62,7 +63,7 @@ public:
 	void GoMedium();
 	void GoSmall();
 	void Destroy();
-
+	bool IsDestroyed();
 };
 
 

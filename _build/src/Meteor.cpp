@@ -3,6 +3,7 @@
 Meteor::Meteor()
 {
 	size = BIG;
+	destroyed = false;
 	speed = { 1,1 };
 	position = { 0 };
 	texture = { 0 };
@@ -62,6 +63,11 @@ void Meteor::GoSmall()
 
 void Meteor::Destroy()
 {
-	//Destroy meteor
+	destroyed = true;
+}
+
+bool Meteor::IsDestroyed()
+{
+	return destroyed;
 }
 

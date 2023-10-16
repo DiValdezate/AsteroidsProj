@@ -48,3 +48,16 @@ void GameplayManager::MeteorSpawner(std::vector<Meteor>* meteors)
 	met.SetTexture(&meteorTexture[0]);
 	meteors->push_back(met);
 }
+
+void GameplayManager::MoveMeteors(std::vector<Meteor>* meteors)
+{
+	for (int i = 0; i < meteors->size(); i++)
+	{
+		Meteor aux = meteors->at(i);
+		if (aux.IsDestroyed() != false)
+		{
+
+		}
+	}
+}
+

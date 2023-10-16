@@ -16,7 +16,7 @@ void DrawTitle(int y)
 {
 	int limit = -75; //This will stop the title in this position in the Y axis.
 	
-	Vector2 textPos = { 200, y };
+	Vector2 textPos = { 200.0, (float)y };
 
 	DrawTextureEx(titleText, textPos, 0, 2, WHITE);
 
