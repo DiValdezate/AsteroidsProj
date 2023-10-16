@@ -1,5 +1,6 @@
 #pragma once
 #include "Entities.h"
+#include <vector>
 
 #define MAX_METEORS 25
 #define MAX_MET_SIZE 3
@@ -8,8 +9,6 @@ class GameplayManager
 {
 public:
 
-	Meteor meteors;
-	Player player;	
 	int gameTime;
 
 	Image playerImg;
@@ -21,10 +20,8 @@ public:
 
 	GameplayManager();
 	void LoadTextures();
-	void MeteorSpawner();
-
-
-
+	void MeteorSpawner(std::vector<Meteor>* meteors);
+	void MoveMeteors(std::vector<Meteor>* meteors);
 
 };
 

@@ -19,6 +19,7 @@
 #include "Entities.h"
 #include "Screens.h"
 #include "GameplayManager.h"
+#include <vector>
 
 
 //Variables declaration
@@ -54,13 +55,12 @@ int main(void)
     //--------------------------------------------------------------------------------------
     gameTime = 0;
     titleYAxis = -250;
-    
-    gamePlayManager.player.SetPosition(new Vector2({ screenWidth / 2, screenHeight / 2 }));
-    gamePlayManager.player.SetTexture(&gamePlayManager.playerTexture);
-    
-    
 
-
+    Player player(3);
+    std::vector<Meteor> meteors;
+    
+    player.SetPosition(new Vector2({ screenWidth / 2, screenHeight / 2 }));
+    player.SetTexture(&gamePlayManager.playerTexture);
 
     SetTargetFPS(60);
     //--------------------------------------------------------------------------------------
@@ -86,12 +86,18 @@ int main(void)
                 DrawText("PRESS [ENTER] TO START", GetScreenWidth() / 2 - 200, GetScreenHeight() / 2,30,YELLOW);  
 
             if (IsKeyPressed(KEY_ENTER))
+            {
                 currentScreen = GAMEPLAY;
+                gamePlayManager.MeteorSpawner(&meteors);
+            }
 
             
             break;
         case GAMEPLAY:
             DrawText("GAMEPLAY", GetScreenWidth() / 2 - 200, GetScreenHeight() / 2, 30, YELLOW);
+
+            if(gameTime % 120 == 0)
+                gamePlayManager.MeteorSpawner(&meteors);
 
 
 
@@ -121,7 +127,9 @@ int main(void)
 
             break;
         case GAMEPLAY:
-            DrawPlayer(&gamePlayManager.player);
+            DrawPlayer(&player);
+            DrawAsteroids(&meteors);
+
 
             break;
 

@@ -8,6 +8,7 @@ Player::Player(int lives)
 	}
 
 	alive = true;
+	speed = { 1,1 };
 	position = { 0 };
 	texture = { 0 };
 }
@@ -56,6 +57,11 @@ Texture2D Player::GetTexture()
 	return texture;
 }
 
+void Player::Move()
+{
+	position.x += speed.x;
+	position.y += speed.y;
+}
 void Player::Kill()
 {
 	alive = false;	

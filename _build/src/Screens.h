@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 
 //States of the game
 enum GameScreen 
@@ -26,7 +27,7 @@ void DrawTitle(int y);
 void InitGamePlayScreen();
 void LoadGameTextures();
 void DrawPlayer(Player* player);
-
+void DrawAsteroids(std::vector<Meteor>* met);
 //Ending screen declarations
 void InitEndingScreen();
 

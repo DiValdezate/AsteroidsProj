@@ -5,6 +5,7 @@ class Player
 {
 	int lives;
 	bool alive;
+	Vector2 speed;
 	Vector2 position;
 	Texture2D texture;
 
@@ -24,13 +25,14 @@ public:
 
 	bool isAlive();
 	void Kill();
-
 	void Hit();
+	void Move();
 
 };
 
 class Meteor
 {
+	Vector2 speed;
 	Vector2 position;
 	Texture2D texture;
 
@@ -55,7 +57,7 @@ public:
 	void SetTexture(Texture2D* texture);
 	Texture2D GetTexture();
 
-
+	void Move();
 	void Hit();
 	void GoMedium();
 	void GoSmall();

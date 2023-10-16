@@ -3,6 +3,7 @@
 Meteor::Meteor()
 {
 	size = BIG;
+	speed = { 1,1 };
 	position = { 0 };
 	texture = { 0 };
 }
@@ -26,6 +27,12 @@ void Meteor::SetTexture(Texture2D* texture)
 Texture2D Meteor::GetTexture()
 {
 	return texture;
+}
+
+void Meteor::Move()
+{
+	position.x += speed.x;
+	position.y += speed.y;
 }
 
 void Meteor::Hit()
