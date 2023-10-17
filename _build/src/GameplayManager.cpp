@@ -1,6 +1,6 @@
 #include "GameplayManager.h"
-
-
+#include <iostream>
+#include <string>
 
 GameplayManager::GameplayManager()
 {
@@ -31,7 +31,7 @@ void GameplayManager::LoadTextures()
 
 void GameplayManager::MeteorSpawner(std::vector<Meteor>* meteors)
 {	
-	if (meteors->size() == 0)
+	if (meteors->size() == 0) 
 	{
 		for (int i = 0; i < 5; i++)
 		{
@@ -53,10 +53,11 @@ void GameplayManager::MoveMeteors(std::vector<Meteor>* meteors)
 {
 	for (int i = 0; i < meteors->size(); i++)
 	{
+		Vector2 randomPos = { GetRandomValue(-100,600),GetRandomValue(-150,900) };
 		Meteor aux = meteors->at(i);
-		if (aux.IsDestroyed() != false)
+		if (aux.IsDestroyed() == false)
 		{
-
+			aux.Move();			
 		}
 	}
 }

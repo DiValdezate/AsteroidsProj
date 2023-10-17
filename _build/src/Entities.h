@@ -55,6 +55,9 @@ public:
 	void SetPosition(Vector2* position);
 	Vector2 GetPosition();
 
+	void SetSpeed(Vector2* speed);
+	Vector2 GetSpeed();
+
 	void SetTexture(Texture2D* texture);
 	Texture2D GetTexture();
 
