@@ -87,8 +87,7 @@ int main(void)
 
             if (IsKeyPressed(KEY_ENTER))
             {
-                currentScreen = GAMEPLAY;
-                gamePlayManager.MeteorSpawner(&meteors);
+                currentScreen = GAMEPLAY;                
             }
 
             
@@ -96,7 +95,7 @@ int main(void)
         case GAMEPLAY:
             DrawText("GAMEPLAY", GetScreenWidth() / 2 - 200, GetScreenHeight() / 2, 30, YELLOW);
 
-            if (gameTime % 120 == 0)
+            if (gameTime % 60 == 0)
             {
                 gamePlayManager.MeteorSpawner(&meteors);
             }

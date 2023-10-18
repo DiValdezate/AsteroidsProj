@@ -31,17 +31,6 @@ void GameplayManager::LoadTextures()
 
 void GameplayManager::MeteorSpawner(std::vector<Meteor>* meteors)
 {	
-	if (meteors->size() == 0) 
-	{
-		for (int i = 0; i < 5; i++)
-		{
-			Vector2 randomPos = { GetRandomValue(-100,600),GetRandomValue(-150,900) };
-			Meteor met;
-			met.SetPosition(&randomPos);
-			met.SetTexture(&meteorTexture[0]);
-			meteors->push_back(met);
-		}
-	}
 	Vector2 randomPos = { GetRandomValue(0,450),GetRandomValue(0,850) };
 	Meteor met;
 	met.SetPosition(&randomPos);
@@ -52,13 +41,13 @@ void GameplayManager::MeteorSpawner(std::vector<Meteor>* meteors)
 void GameplayManager::MoveMeteors(std::vector<Meteor>* meteors)
 {
 	for (int i = 0; i < meteors->size(); i++)
-	{
-		Vector2 randomPos = { GetRandomValue(-100,600),GetRandomValue(-150,900) };
-		Meteor aux = meteors->at(i);
-		if (aux.IsDestroyed() == false)
+	{		
+		Meteor* aux = &meteors->at(i);
+		if (aux->IsDestroyed() == false)
 		{
-			aux.Move();			
+			aux->Move();
 		}
+		
 	}
 }
 

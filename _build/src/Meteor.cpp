@@ -4,9 +4,10 @@ Meteor::Meteor()
 {
 	size = BIG;
 	destroyed = false;
-	speed = { 2,2 };
+	speed = { (float)GetRandomValue(-1,2),(float)GetRandomValue(-1,2) };
 	position = { 0 };
 	texture = { 0 };
+	isMoving = false;
 }
 
 
@@ -40,10 +41,30 @@ Vector2 Meteor::GetSpeed()
 	return speed;
 }
 
+void Meteor::SetMoving(bool value)
+{
+	this->isMoving == value;
+}
+
+bool Meteor::IsMoving()
+{
+	return isMoving;
+}
+
 void Meteor::Move()
 {
-	position.x += speed.x;
-	position.y += speed.y;
+	if (isMoving == false)
+	{
+		isMoving = true;
+		position.x += speed.x;
+		position.y += speed.y;
+	}
+	else
+	{
+		position.x += speed.x;
+		position.y += speed.y;
+	}	
+
 }
 
 void Meteor::Hit()

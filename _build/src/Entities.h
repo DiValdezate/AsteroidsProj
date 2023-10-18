@@ -36,6 +36,7 @@ class Meteor
 	Vector2 speed;
 	Vector2 position;
 	Texture2D texture;
+	bool isMoving;
 
 
 public:
@@ -62,6 +63,8 @@ public:
 	Texture2D GetTexture();
 
 	void Move();
+	void SetMoving(bool value);
+	bool IsMoving();
 	void Hit();
 	void GoMedium();
 	void GoSmall();
