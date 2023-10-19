@@ -10,13 +10,18 @@ GameplayManager::GameplayManager()
 	playerTexture = { 0 };
 	meteorImg[MAX_MET_SIZE] = {0,0,0};
 	meteorTexture[MAX_MET_SIZE] = {0,0,0};
+	explosionImg = { 0 };
+	explosionTexture = { 0 };
 
 }
 
-void GameplayManager::LoadTextures()
+void GameplayManager::LoadTextures() //This function loads all textures before the game starts
 {
 	playerImg = LoadImage("resources/textures/Player.png");
 	playerTexture = LoadTextureFromImage(playerImg);
+
+	explosionImg = LoadImage("resources/textures/Explosion.png");
+	explosionTexture = LoadTextureFromImage(explosionImg);
 
 	meteorImg[0] = LoadImage("resources/textures/BigMeteor.png");
 	meteorImg[1] = LoadImage("resources/textures/MediumMeteor.png");
@@ -31,7 +36,7 @@ void GameplayManager::LoadTextures()
 
 void GameplayManager::MeteorSpawner(std::vector<Meteor>* meteors)
 {	
-	Vector2 randomPos = { GetRandomValue(0,450),GetRandomValue(0,850) };
+	Vector2 randomPos = { (float)GetRandomValue(0,450),(float)GetRandomValue(0,850) };
 	Meteor met;
 	met.SetPosition(&randomPos);
 	met.SetTexture(&meteorTexture[0]);
@@ -46,8 +51,7 @@ void GameplayManager::MoveMeteors(std::vector<Meteor>* meteors)
 		if (aux->IsDestroyed() == false)
 		{
 			aux->Move();
-		}
-		
+		}		
 	}
 }
 

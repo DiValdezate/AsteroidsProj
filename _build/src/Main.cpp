@@ -58,6 +58,7 @@ int main(void)
 
     Player player(3);
     std::vector<Meteor> meteors;
+    std::vector<Bullet> bullets;
     
     player.SetPosition(new Vector2({ screenWidth / 2, screenHeight / 2 }));
     player.SetTexture(&gamePlayManager.playerTexture);
@@ -92,17 +93,39 @@ int main(void)
 
             
             break;
-        case GAMEPLAY:
-            DrawText("GAMEPLAY", GetScreenWidth() / 2 - 200, GetScreenHeight() / 2, 30, YELLOW);
+        case GAMEPLAY:            
 
-            if (gameTime % 60 == 0)
+            if (gameTime % 60 == 0) //An asteroid will spawn every second
             {
                 gamePlayManager.MeteorSpawner(&meteors);
             }
 
-            gamePlayManager.MoveMeteors(&meteors);
+            gamePlayManager.MoveMeteors(&meteors); //We move the meteors every frame
+
+            //Player input management
+            if (IsKeyDown(KEY_UP))
+            {
+                player.Moving(true);
+                player.Move();
+            }
+            else
+            {
+                player.Moving(false);
+            }
+
+            
+
+            if (IsKeyDown(KEY_LEFT))
+            {
+                player.TurnLeft();
+            }
+            if (IsKeyDown(KEY_RIGHT))
+                player.TurnRight();
 
 
+
+
+            DrawCircle(GetScreenWidth() / 2 - 200, GetScreenHeight() / 2, 15.0f, RED);
 
             break;
 

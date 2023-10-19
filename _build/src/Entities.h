@@ -1,5 +1,8 @@
 #pragma once
 #include "raylib.h"
+#include <math.h>
+
+#define PLAYER_SPEED 3.0f;
 
 class Player
 {
@@ -8,6 +11,9 @@ class Player
 	Vector2 speed;
 	Vector2 position;
 	Texture2D texture;
+	float radius;
+	float rotation;
+	bool moving;
 
 public:
 
@@ -23,10 +29,18 @@ public:
 	Texture2D GetTexture();	
 	void SetTexture(Texture2D* texture);
 
+	float GetRotation();
+	void SetRotation(float rotation);
+
 	bool isAlive();
 	void Kill();
 	void Hit();
-	void Move();
+	void Move(); //This will move (or stop) the player depending on the "moving" value. 
+	void TurnLeft();
+	void TurnRight();
+	void Shoot();
+	void Moving(bool value);
+	bool IsMoving();
 
 };
 
@@ -36,6 +50,7 @@ class Meteor
 	Vector2 speed;
 	Vector2 position;
 	Texture2D texture;
+	float radius;
 	bool isMoving;
 
 
@@ -65,14 +80,25 @@ public:
 	void Move();
 	void SetMoving(bool value);
 	bool IsMoving();
-	void Hit();
-	void GoMedium();
-	void GoSmall();
+	void Hit(Texture2D* MediumText, Texture2D* SmallText);
+	void GoMedium(Texture2D* texture);
+	void GoSmall(Texture2D* texture);
 	void Destroy();
 	bool IsDestroyed();
 };
 
+class Bullet
+{
+	float radius;
+	Vector2 position;
+	int timeToDestroy;
 
+public:
+	Bullet();
+
+	void Shoot();
+
+};
 
 
 

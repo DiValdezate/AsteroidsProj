@@ -2,6 +2,7 @@
 #include "Entities.h"
 #include <vector>
 
+
 #define MAX_METEORS 25
 #define MAX_MET_SIZE 3
 
@@ -15,6 +16,8 @@ public:
 	Texture2D playerTexture;
 	Image meteorImg[MAX_MET_SIZE];
 	Texture2D meteorTexture[MAX_MET_SIZE];
+	Image explosionImg;
+	Texture2D explosionTexture;
 
 public:
 

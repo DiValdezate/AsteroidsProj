@@ -8,18 +8,24 @@ Player::Player(int lives)
 	}
 
 	alive = true;
-	speed = { 1,1 };
+	speed = { 0 };
 	position = { 0 };
 	texture = { 0 };
+	radius = 15.0f;
+	rotation = 0.0f;
+	moving = false;
 }
 
 Player::Player()
 {
 	lives = 3;
 	alive = true;
-	speed = { 1,1 };
+	speed = { 0 };
 	position = { 0 };
 	texture = { 0 };
+	radius = 15.0f;
+	rotation = 0.0f;
+	moving = false;
 }
 
 int Player::GetLives()
@@ -58,11 +64,36 @@ Texture2D Player::GetTexture()
 	return texture;
 }
 
+float Player::GetRotation()
+{
+	return rotation;
+}
+
+void Player::SetRotation(float rotation)
+{
+	this->rotation = rotation;
+}
+
+
+
 void Player::Move()
 {
-	position.x += speed.x;
-	position.y += speed.y;
+	position.x += sin(rotation * DEG2RAD) * PLAYER_SPEED;
+	position.y -= cos(rotation * DEG2RAD) * PLAYER_SPEED;	
 }
+
+void Player::TurnLeft()
+{
+	if(moving)
+		rotation -= 3.0f;
+}
+
+void Player::TurnRight()
+{
+	if(moving)
+		rotation += 3.0f;
+}
+
 void Player::Kill()
 {
 	alive = false;	
@@ -71,6 +102,16 @@ void Player::Kill()
 bool Player::isAlive()
 {
 	return alive;
+}
+
+void Player::Moving(bool value)
+{
+	this->moving = value;
+}
+
+bool Player::IsMoving()
+{
+	return moving;
 }
 
 void Player::Hit()

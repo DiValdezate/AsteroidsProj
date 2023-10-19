@@ -7,6 +7,7 @@ Meteor::Meteor()
 	speed = { (float)GetRandomValue(-1,2),(float)GetRandomValue(-1,2) };
 	position = { 0 };
 	texture = { 0 };
+	radius = 35.0f;
 	isMoving = false;
 }
 
@@ -43,7 +44,7 @@ Vector2 Meteor::GetSpeed()
 
 void Meteor::SetMoving(bool value)
 {
-	this->isMoving == value;
+	this->isMoving = value;
 }
 
 bool Meteor::IsMoving()
@@ -53,43 +54,35 @@ bool Meteor::IsMoving()
 
 void Meteor::Move()
 {
-	if (isMoving == false)
-	{
-		isMoving = true;
-		position.x += speed.x;
-		position.y += speed.y;
-	}
-	else
-	{
-		position.x += speed.x;
-		position.y += speed.y;
-	}	
-
+	position.x += speed.x;
+	position.y += speed.y;
 }
 
-void Meteor::Hit()
+void Meteor::Hit(Texture2D* MediumText, Texture2D* SmallText)
 {
 	switch (size)
 	{
 	case BIG:
-		GoMedium();
+		GoMedium(MediumText);
 		break;
 	case MEDIUM:
-		GoSmall();
+		GoSmall(SmallText);
 		break;
 	case SMALL:
 		Destroy();
 	}
 }
 
-void Meteor::GoMedium()
+void Meteor::GoMedium(Texture2D* texture) //We need to pass in the Medium texture here
 {
 	size = MEDIUM;
+	this->texture = *texture;	
 }
 
-void Meteor::GoSmall()
+void Meteor::GoSmall(Texture2D* texture) //We need to pass in the Medium texture here
 {
 	size = SMALL;
+	this->texture = *texture;
 }
 
 void Meteor::Destroy()
