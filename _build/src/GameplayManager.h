@@ -1,6 +1,5 @@
 #pragma once
 #include "Entities.h"
-#include <vector>
 
 
 #define MAX_METEORS 25
@@ -25,5 +24,6 @@ public:
 	void LoadTextures();
 	void MeteorSpawner(std::vector<Meteor>* meteors);
 	void MoveMeteors(std::vector<Meteor>* meteors);
+	void MoveBullets(std::vector<Bullet>* bullets);
 };
 

@@ -1,6 +1,11 @@
 #pragma once
 #include "raylib.h"
+#include <vector>
 #include <math.h>
+
+//__________________________________
+//INCLUDES ALL CLASSES IN THE GAME
+//__________________________________
 
 #define PLAYER_SPEED 3.0f;
 
@@ -35,7 +40,7 @@ public:
 	bool isAlive();
 	void Kill();
 	void Hit();
-	void Move(); //This will move (or stop) the player depending on the "moving" value. 
+	void Move(); 
 	void TurnLeft();
 	void TurnRight();
 	void Shoot();
@@ -92,11 +97,14 @@ class Bullet
 	float radius;
 	Vector2 position;
 	int timeToDestroy;
+	bool active;
 
 public:
 	Bullet();
 
-	void Shoot();
+	void CountDown();
+	void Destroy();
+
 
 };
 

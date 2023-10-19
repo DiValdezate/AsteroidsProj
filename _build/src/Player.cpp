@@ -28,10 +28,12 @@ Player::Player()
 	moving = false;
 }
 
+
 int Player::GetLives()
 {
 	return lives;
 }
+
 
 void Player::SetLives(int lives)
 {
@@ -41,15 +43,18 @@ void Player::SetLives(int lives)
 	}
 }
 
+
 void Player::SetPosition(Vector2* position)
 {
 	this->position = *position;
 }
 
+
 Vector2 Player::GetPosition()
 {
 	return position;
 }
+
 
 void Player::SetTexture(Texture2D* texture)
 {
@@ -112,6 +117,11 @@ void Player::Moving(bool value)
 bool Player::IsMoving()
 {
 	return moving;
+}
+
+void Player::Shoot()
+{
+
 }
 
 void Player::Hit()

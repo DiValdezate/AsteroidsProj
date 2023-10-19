@@ -55,3 +55,10 @@ void GameplayManager::MoveMeteors(std::vector<Meteor>* meteors)
 	}
 }
 
+void GameplayManager::MoveBullets(std::vector<Bullet>* bullets)
+{
+	for (int i = 0; i < bullets->size(); i++)
+	{
+		//bullets->at(i).
+	}
+}
