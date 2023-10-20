@@ -8,6 +8,7 @@
 //__________________________________
 
 #define PLAYER_SPEED 3.0f;
+#define BULLET_SPEED 4;
 
 class Player
 {
@@ -104,6 +105,7 @@ public:
 
 	void CountDown();
 	void Destroy();
+	void SetPosition(int newX, int newY);
 
 
 };

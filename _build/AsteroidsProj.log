@@ -4,10 +4,10 @@
   GameplayManager.cpp
   Logo.cpp
   Main.cpp
+  Meteor.cpp
   Player.cpp
 C:\Dev\PACS\AsteroidsProj\_build\src\Player.cpp(86,40): warning C4244: '+=': conversión de 'double' a 'float'; posible pérdida de datos
 C:\Dev\PACS\AsteroidsProj\_build\src\Player.cpp(87,40): warning C4244: '-=': conversión de 'double' a 'float'; posible pérdida de datos
-  Meteor.cpp
   Title.cpp
   Generando código...
   AsteroidsProj.vcxproj -> C:\Dev\PACS\AsteroidsProj\_bin\Debug\AsteroidsProj.exe
