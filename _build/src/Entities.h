@@ -78,6 +78,7 @@ public:
 	Vector2 GetPosition();
 
 	void SetSpeed(Vector2* speed);
+	void InitSpeed();
 	Vector2 GetSpeed();
 
 	void SetTexture(Texture2D* texture);
@@ -91,6 +92,7 @@ public:
 	void GoSmall(Texture2D* texture);
 	void Destroy();
 	bool IsDestroyed();
+	void Flip();
 };
 
 class Bullet
@@ -99,13 +101,24 @@ class Bullet
 	Vector2 position;
 	int timeToDestroy;
 	bool active;
+	float rotation;
+	Texture2D texture;
 
 public:
-	Bullet();
+	Bullet(float rotation);
 
+	void SetPosition(int x, int y);
+	Vector2 GetPosition();
+
+	void SetTexture(Texture2D* texture);
+	Texture2D GetTexture();
+
+	bool IsActive();
 	void CountDown();
 	void Destroy();
-	void SetPosition(int newX, int newY);
+	
+	void SetSpeed();
+	
 
 
 };

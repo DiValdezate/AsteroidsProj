@@ -41,3 +41,13 @@ void DrawAsteroids(std::vector<Meteor>* met)//Draws all asteroids at their curre
 		}
 	}
 }
+
+void DrawBullets(std::vector<Bullet>* bullets)
+{
+	for (int i = 0; i < bullets->size(); i++)
+	{
+		Bullet aux = bullets->at(i);
+		DrawTextureEx(aux.GetTexture(), aux.GetPosition(), 1, 0.5f, WHITE);
+	}
+
+}

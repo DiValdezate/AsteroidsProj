@@ -17,6 +17,8 @@ public:
 	Texture2D meteorTexture[MAX_MET_SIZE];
 	Image explosionImg;
 	Texture2D explosionTexture;
+	Image bulletImg;
+	Texture2D bulletTexture;
 
 public:
 
@@ -24,6 +26,7 @@ public:
 	void LoadTextures();
 	void MeteorSpawner(std::vector<Meteor>* meteors);
 	void MoveMeteors(std::vector<Meteor>* meteors);
-	void MoveBullets(std::vector<Bullet>* bullets);
+	void MoveBullets(std::vector<Bullet>* bullets, float rotation);
+	void BulletSpawner(std::vector<Bullet>* bullets, Player* player);
 };
 

@@ -4,7 +4,7 @@ Meteor::Meteor()
 {
 	size = BIG;
 	destroyed = false;
-	speed = { (float)GetRandomValue(-1,2),(float)GetRandomValue(-1,2) };
+	InitSpeed();
 	position = { 0 };
 	texture = { 0 };
 	radius = 35.0f;
@@ -34,7 +34,25 @@ Texture2D Meteor::GetTexture()
 
 void Meteor::SetSpeed(Vector2* speed)
 {
-	this->speed = *speed;
+	this->speed.x = speed->x;
+	this->speed.y = speed->y;
+}
+
+void Meteor::InitSpeed()
+{
+	int x = GetRandomValue(-2, 2);
+	int y = GetRandomValue(-2, 2);
+
+	if (x == 0 && y == 0)
+	{
+		this->speed.x = 1;
+		this->speed.y = 1;
+	}
+	else
+	{
+		this->speed.x = x;
+		this->speed.y = y;
+	}
 }
 
 Vector2 Meteor::GetSpeed()
@@ -54,8 +72,22 @@ bool Meteor::IsMoving()
 
 void Meteor::Move()
 {
-	position.x += speed.x;
-	position.y += speed.y;
+	if (position.x > 0 && position.x <= GetScreenWidth() - position.x - radius/2)
+		position.x += speed.x;
+	else
+		position.x += speed.x *=-1;
+
+
+	if (position.y > 0 && position.y <= GetScreenHeight() - radius)
+		position.y += speed.y;
+	else
+		position.y += speed.y *= -1;
+}
+
+void Meteor::Flip()
+{
+	position.x * -1;
+	position.y * -1;
 }
 
 void Meteor::Hit(Texture2D* MediumText, Texture2D* SmallText)

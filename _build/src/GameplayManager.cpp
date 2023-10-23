@@ -12,6 +12,8 @@ GameplayManager::GameplayManager()
 	meteorTexture[MAX_MET_SIZE] = {0,0,0};
 	explosionImg = { 0 };
 	explosionTexture = { 0 };
+	bulletImg = { 0 };
+	bulletTexture = { 0 };
 
 }
 
@@ -22,6 +24,10 @@ void GameplayManager::LoadTextures() //This function loads all textures before t
 
 	explosionImg = LoadImage("resources/textures/Explosion.png");
 	explosionTexture = LoadTextureFromImage(explosionImg);
+
+	bulletImg = LoadImage("resources/textures/Bonus.png");
+	bulletTexture = LoadTextureFromImage(bulletImg);
+
 
 	meteorImg[0] = LoadImage("resources/textures/BigMeteor.png");
 	meteorImg[1] = LoadImage("resources/textures/MediumMeteor.png");
@@ -55,11 +61,33 @@ void GameplayManager::MoveMeteors(std::vector<Meteor>* meteors)
 	}
 }
 
-void GameplayManager::MoveBullets(std::vector<Bullet>* bullets)
+void GameplayManager::MoveBullets(std::vector<Bullet>* bullets, float rotation)
 {
 	for (int i = 0; i < bullets->size(); i++)
 	{
-		bullets->at(i).SetPosition(4,4);
-
+		//CAMBIAR ESTO, HAY QUE PASARLE LA POSICION DEL PLAYER AL SPAWNEAR, LUEGO SIMPLEMENTE MANTENER SPEED
+		//bullets->at(i).SetPosition(player->GetPosition().x, player->GetPosition().y);
+		if (bullets->at(i).IsActive())
+		{
+			bullets->at(i).SetSpeed();
+			bullets->at(i).CountDown();
+		}
+		else
+		{			
+			std::vector<Bullet>::iterator it = bullets->begin() + i;
+			bullets->erase(it);
+		}
 	}
 }
+
+void GameplayManager::BulletSpawner(std::vector<Bullet>* bullets, Player* player)
+{
+	Bullet bullet(player->GetRotation());
+	bullet.SetPosition(player->GetPosition().x, player->GetPosition().y);
+	bullet.SetTexture(&bulletTexture);
+
+	bullets->push_back(bullet);
+}
+
+
+

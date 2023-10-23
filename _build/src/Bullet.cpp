@@ -1,12 +1,33 @@
 #include "Entities.h"
 
-Bullet::Bullet()
+Bullet::Bullet(float rotation)
 {
 	radius = 5.0f;
 	position = { 0 };
 	timeToDestroy = 5 * 60;
 	active = true;
+	this->rotation = rotation;
 
+}
+
+void Bullet::SetTexture(Texture2D* texture)
+{
+	this->texture = *texture;
+}
+Texture2D Bullet::GetTexture()
+{
+	return texture;
+}
+
+void Bullet::SetPosition(int x, int y)
+{
+	position.x = x;
+	position.y = y;
+}
+
+Vector2 Bullet::GetPosition()
+{
+	return position;
 }
 
 void Bullet::CountDown()
@@ -23,16 +44,16 @@ void Bullet::Destroy()
 	active = false;
 }
 
-void Bullet::SetPosition(int x, int y)
+bool Bullet::IsActive()
 {
-	position.x = x;
-	position.y = y;
+	return active;
 }
 
-void Bullet::SetSpeed(float rotation)
+void Bullet::SetSpeed()
 {
-	position.x += sin(rotation * DEG2RAD) * BULLET_SPEED;
-	position.y -= cos(rotation * DEG2RAD) * BULLET_SPEED;
+	
+	position.x += sin(this->rotation * DEG2RAD) * BULLET_SPEED;
+	position.y -= cos(this->rotation * DEG2RAD) * BULLET_SPEED;
 }
 
 

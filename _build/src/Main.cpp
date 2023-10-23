@@ -71,8 +71,7 @@ int main(void)
     {
         // Update
         //----------------------------------------------------------------------------------
-        // TODO: Update variables / Implement example logic at this point
-        //----------------------------------------------------------------------------------
+
         switch (currentScreen)
         {
         case LOGO:
@@ -103,6 +102,8 @@ int main(void)
             gamePlayManager.MoveMeteors(&meteors); //We move the meteors every frame
 
             //Player input management
+            // 
+            //MOVEMENT
             if (IsKeyDown(KEY_UP))
             {
                 player.Moving(true);
@@ -111,9 +112,7 @@ int main(void)
             else
             {
                 player.Moving(false);
-            }
-
-            
+            }            
 
             if (IsKeyDown(KEY_LEFT))
             {
@@ -122,10 +121,14 @@ int main(void)
             if (IsKeyDown(KEY_RIGHT))
                 player.TurnRight();
 
+            //SHOOT
+            if (IsKeyPressed(KEY_SPACE))
+            {
+                gamePlayManager.BulletSpawner(&bullets, &player);
+            }
+            gamePlayManager.MoveBullets(&bullets, player.GetRotation());
 
 
-
-            DrawCircle(GetScreenWidth() / 2 - 200, GetScreenHeight() / 2, 15.0f, RED);
 
             break;
 
@@ -155,6 +158,7 @@ int main(void)
         case GAMEPLAY:
             DrawPlayer(&player);
             DrawAsteroids(&meteors);
+            DrawBullets(&bullets);
 
 
             break;
