@@ -6,6 +6,10 @@ GameplayManager::GameplayManager()
 {
 	gameTime = 0;	
 	
+	titleImg = { 0 };
+	titleText = { 0 };
+	background = { 0 };
+	backgroundTexture = { 0 };
 	playerImg = { 0 };
 	playerTexture = { 0 };
 	meteorImg[MAX_MET_SIZE] = {0,0,0};
@@ -19,6 +23,12 @@ GameplayManager::GameplayManager()
 
 void GameplayManager::LoadTextures() //This function loads all textures before the game starts
 {
+	titleImg = LoadImage("resources/textures/Title.png");
+	titleText = LoadTextureFromImage(titleImg);
+
+	background = LoadImage("resources/textures/Landscape.png");
+	backgroundTexture = LoadTextureFromImage(background);
+
 	playerImg = LoadImage("resources/textures/Player.png");
 	playerTexture = LoadTextureFromImage(playerImg);
 

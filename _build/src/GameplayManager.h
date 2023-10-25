@@ -11,6 +11,10 @@ public:
 
 	int gameTime;
 
+	Image titleImg;
+	Texture2D titleText;
+	Image background;
+	Texture2D backgroundTexture;
 	Image playerImg;
 	Texture2D playerTexture;
 	Image meteorImg[MAX_MET_SIZE];

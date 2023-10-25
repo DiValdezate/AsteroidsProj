@@ -51,3 +51,8 @@ void DrawBullets(std::vector<Bullet>* bullets)
 	}
 
 }
+
+void DrawBackground(Texture2D texture)
+{
+	DrawTextureEx(texture, { 0,0 }, 0, 1, WHITE);
+}

@@ -44,8 +44,7 @@ int main(void)
 
     //Textures initialization
     //--------------------------------------------------------------------------------------
-    LoadTextTextures();
-    LoadGameTextures();
+
     gamePlayManager.LoadTextures();
 
 
@@ -149,13 +148,15 @@ int main(void)
 
             break;
         case TITLE:
-            DrawTitle(titleYAxis);
+            DrawBackground(gamePlayManager.backgroundTexture);
+            DrawTitle(titleYAxis,gamePlayManager.titleText);
 
             if (titleYAxis < -75)//This is the limit on the Y axis, when reached, the title texture stops moving. 
                 titleYAxis++;          
 
             break;
         case GAMEPLAY:
+            DrawBackground(gamePlayManager.backgroundTexture);
             DrawPlayer(&player);
             DrawAsteroids(&meteors);
             DrawBullets(&bullets);

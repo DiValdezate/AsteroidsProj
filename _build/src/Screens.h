@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include "GameplayManager.h"
 
 //States of the game
 enum GameScreen 
@@ -13,6 +14,8 @@ enum GameScreen
 //Variable declarations
 static GameScreen currentScreen;
 
+//Background image
+void DrawBackground(Texture2D texture);
 
 //Logo screen declarations
 void InitLogoScreen();
@@ -20,8 +23,9 @@ void UpdateLogoScreen();
 
 //Title screen declarations
 void InitTitleScreen();
+void DrawTitleBackground(Texture2D texture);
 void LoadTextTextures();
-void DrawTitle(int y);
+void DrawTitle(int y, Texture2D texture);
 
 //Gameplay screen declarations
 void InitGamePlayScreen();
