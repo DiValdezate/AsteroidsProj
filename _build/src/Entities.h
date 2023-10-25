@@ -52,6 +52,33 @@ public:
 
 };
 
+class Bullet
+{
+	float radius;
+	Vector2 position;
+	int timeToDestroy;
+	bool active;
+	float rotation;
+	Texture2D texture;
+
+public:
+	Bullet(float rotation);
+
+	void SetPosition(int x, int y);
+	Vector2 GetPosition();
+
+	void SetTexture(Texture2D* texture);
+	Texture2D GetTexture();
+
+	float GetRadius();
+
+	bool IsActive();
+	void CountDown();
+	void Destroy();
+	void SetSpeed();
+
+};
+
 class Meteor
 {
 	bool destroyed;
@@ -95,37 +122,12 @@ public:
 	void GoSmall(Texture2D* texture);
 	void Destroy();
 	bool IsDestroyed();
-	void Flip();
 	bool CheckCollision(Player* player);
+	bool CheckCollision(std::vector<Bullet>* bullet);
+	
 };
 
-class Bullet
-{
-	float radius;
-	Vector2 position;
-	int timeToDestroy;
-	bool active;
-	float rotation;
-	Texture2D texture;
 
-public:
-	Bullet(float rotation);
-
-	void SetPosition(int x, int y);
-	Vector2 GetPosition();
-
-	void SetTexture(Texture2D* texture);
-	Texture2D GetTexture();
-
-	bool IsActive();
-	void CountDown();
-	void Destroy();
-	
-	void SetSpeed();
-	
-
-
-};
 
 
 

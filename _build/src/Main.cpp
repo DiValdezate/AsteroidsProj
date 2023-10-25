@@ -132,7 +132,9 @@ int main(void)
 
             //COLLISIONS
             //
-            gamePlayManager.MeteorCollision(&meteors, &player);
+            gamePlayManager.MeteorCollision(&meteors, &player); //Meteor vs player
+            gamePlayManager.MeteorCollision(&meteors, &bullets); //Meteor vs bullets
+
 
 
             break;

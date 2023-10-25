@@ -34,5 +34,6 @@ public:
 	void MoveBullets(std::vector<Bullet>* bullets, float rotation);
 	void BulletSpawner(std::vector<Bullet>* bullets, Player* player);
 	void MeteorCollision(std::vector<Meteor>* meteors, Player* player);
+	void MeteorCollision(std::vector<Meteor>* meteors, std::vector<Bullet>* bullets);
 };
 

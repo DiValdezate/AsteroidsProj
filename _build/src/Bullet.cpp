@@ -4,6 +4,7 @@ Bullet::Bullet(float rotation)
 {
 	radius = 5.0f;
 	position = { 0 };
+	texture = { 0 };
 	timeToDestroy = 5 * 60;
 	active = true;
 	this->rotation = rotation;
@@ -17,6 +18,11 @@ void Bullet::SetTexture(Texture2D* texture)
 Texture2D Bullet::GetTexture()
 {
 	return texture;
+}
+
+float Bullet::GetRadius()
+{
+	return radius;
 }
 
 void Bullet::SetPosition(int x, int y)

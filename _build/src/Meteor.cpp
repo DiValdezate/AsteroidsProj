@@ -88,12 +88,6 @@ void Meteor::Move()
 		position.y += speed.y *= -1;
 }
 
-void Meteor::Flip()
-{
-	position.x * -1;
-	position.y * -1;
-}
-
 void Meteor::Hit(Texture2D* MediumText, Texture2D* SmallText)
 {
 	switch (size)
@@ -118,6 +112,23 @@ bool Meteor::CheckCollision(Player* player)
 
 	return false;
 }
+
+bool Meteor::CheckCollision(std::vector<Bullet>* bullets)
+{
+	for (int i = 0; i < bullets->size(); i++)
+	{
+		if (CheckCollisionCircles(position, radius, bullets->at(i).GetPosition(), bullets->at(i).GetRadius()))
+		{
+			//If the meteor hits a bullet, returns true but also destroys the bullet.
+			std::vector<Bullet>::iterator it = bullets->begin() + i;
+			bullets->erase(it);
+			return true;
+		}
+	}
+
+	return false;
+}
+
 
 void Meteor::GoMedium(Texture2D* texture) //We need to pass in the Medium texture here
 {

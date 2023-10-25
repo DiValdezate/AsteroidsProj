@@ -36,7 +36,7 @@ void GameplayManager::LoadTextures() //This function loads all textures before t
 	explosionImg = LoadImage("resources/textures/Explosion.png");
 	explosionTexture = LoadTextureFromImage(explosionImg);
 
-	bulletImg = LoadImage("resources/textures/Bonus.png");
+	bulletImg = LoadImage("resources/textures/Fire.png");
 	bulletTexture = LoadTextureFromImage(bulletImg);
 
 
@@ -79,7 +79,7 @@ void GameplayManager::MoveBullets(std::vector<Bullet>* bullets, float rotation)
 		if (bullets->at(i).IsActive())
 		{
 			bullets->at(i).SetSpeed();
-			bullets->at(i).CountDown();
+			bullets->at(i).CountDown();			
 		}
 		else
 		{			
@@ -111,6 +111,19 @@ void GameplayManager::MeteorCollision(std::vector<Meteor>* meteors, Player* play
 		else
 		{
 			invTime++;
+		}
+	}
+}
+
+void GameplayManager::MeteorCollision(std::vector<Meteor>* meteors, std::vector<Bullet>* bullets)
+{
+	for (int i = 0; i < meteors->size(); i++)
+	{
+		if (meteors->at(i).CheckCollision(bullets))
+		{
+			meteors->at(i).Destroy();
+			std::vector<Meteor>::iterator it = meteors->begin() + i;
+			meteors->erase(it);			
 		}
 	}
 }

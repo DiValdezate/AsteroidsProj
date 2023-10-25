@@ -37,7 +37,7 @@ void DrawAsteroids(std::vector<Meteor>* met)//Draws all asteroids at their curre
 		Meteor aux = met->at(i);
 		if (aux.IsDestroyed() == false)
 		{
-			DrawTexture(aux.GetTexture(), aux.GetPosition().x - 45, aux.GetPosition().y - 30, WHITE); //Adjusting the texture to fit the position
+			DrawTexture(aux.GetTexture(), aux.GetPosition().x - 45, aux.GetPosition().y - 30, WHITE); //Adjusting the texture to allign the center with the position
 			//DrawCircle(aux.GetPosition().x, aux.GetPosition().y, aux.GetRadius(), RED);
 		}
 	}
@@ -48,7 +48,9 @@ void DrawBullets(std::vector<Bullet>* bullets)
 	for (int i = 0; i < bullets->size(); i++)
 	{
 		Bullet aux = bullets->at(i);
-		DrawTextureEx(aux.GetTexture(), aux.GetPosition(), 1, 0.5f, WHITE);
+		Vector2 auxPos = { aux.GetPosition().x - 12, aux.GetPosition().y - 12}; //Adjusting the texture to allign the center with the position
+		DrawTextureEx(aux.GetTexture(), auxPos, 1, 0.25f, WHITE);
+		
 	}
 
 }
