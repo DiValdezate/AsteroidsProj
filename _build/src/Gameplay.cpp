@@ -27,7 +27,7 @@ void DrawTextureExCustom(Texture2D texture, Vector2 position, float rotation, fl
 void DrawPlayer(Player* player)//Draws the player at the player's current position
 {
 	if (player->isAlive())
-		DrawTextureExCustom(player->GetTexture(), player->GetPosition(), player->GetRotation(), 0.6f, WHITE);		
+		DrawTextureExCustom(player->GetTexture(), player->GetPosition(), player->GetRotation(), 1, WHITE);		
 }
 
 void DrawAsteroids(std::vector<Meteor>* met)//Draws all asteroids at their current posiion
@@ -37,7 +37,8 @@ void DrawAsteroids(std::vector<Meteor>* met)//Draws all asteroids at their curre
 		Meteor aux = met->at(i);
 		if (aux.IsDestroyed() == false)
 		{
-			DrawTextureEx(aux.GetTexture(), aux.GetPosition(), 1, 1, WHITE);
+			DrawTexture(aux.GetTexture(), aux.GetPosition().x - 45, aux.GetPosition().y - 30, WHITE); //Adjusting the texture to fit the position
+			//DrawCircle(aux.GetPosition().x, aux.GetPosition().y, aux.GetRadius(), RED);
 		}
 	}
 }

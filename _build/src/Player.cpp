@@ -79,6 +79,11 @@ void Player::SetRotation(float rotation)
 	this->rotation = rotation;
 }
 
+float Player::GetRadius()
+{
+	return radius;
+}
+
 
 
 void Player::Move()
@@ -124,11 +129,16 @@ void Player::Shoot()
 
 }
 
+
 void Player::Hit()
 {
 	if (lives > 0)
 	{
 		lives--;
+	}
+	else
+	{
+		Kill();
 	}
 }
 

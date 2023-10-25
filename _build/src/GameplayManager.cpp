@@ -5,7 +5,8 @@
 GameplayManager::GameplayManager()
 {
 	gameTime = 0;	
-	
+	invTime = 0;
+
 	titleImg = { 0 };
 	titleText = { 0 };
 	background = { 0 };
@@ -75,8 +76,6 @@ void GameplayManager::MoveBullets(std::vector<Bullet>* bullets, float rotation)
 {
 	for (int i = 0; i < bullets->size(); i++)
 	{
-		//CAMBIAR ESTO, HAY QUE PASARLE LA POSICION DEL PLAYER AL SPAWNEAR, LUEGO SIMPLEMENTE MANTENER SPEED
-		//bullets->at(i).SetPosition(player->GetPosition().x, player->GetPosition().y);
 		if (bullets->at(i).IsActive())
 		{
 			bullets->at(i).SetSpeed();
@@ -97,6 +96,23 @@ void GameplayManager::BulletSpawner(std::vector<Bullet>* bullets, Player* player
 	bullet.SetTexture(&bulletTexture);
 
 	bullets->push_back(bullet);
+}
+
+void GameplayManager::MeteorCollision(std::vector<Meteor>* meteors, Player* player)
+{	
+	for (int i = 0; i < meteors->size(); i++)
+	{			
+		if (meteors->at(i).CheckCollision(player) && invTime >= 120)
+		{
+			std::cout << player->GetLives();			
+			player->Hit();			
+			invTime = 0;
+		}
+		else
+		{
+			invTime++;
+		}
+	}
 }
 
 

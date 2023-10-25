@@ -7,7 +7,7 @@ Meteor::Meteor()
 	InitSpeed();
 	position = { 0 };
 	texture = { 0 };
-	radius = 35.0f;
+	radius = 30.0f;
 	isMoving = false;
 }
 
@@ -60,6 +60,10 @@ Vector2 Meteor::GetSpeed()
 	return speed;
 }
 
+float Meteor::GetRadius()
+{
+	return radius;
+}
 void Meteor::SetMoving(bool value)
 {
 	this->isMoving = value;
@@ -72,13 +76,13 @@ bool Meteor::IsMoving()
 
 void Meteor::Move()
 {
-	if (position.x > 0 && position.x <= GetScreenWidth() - position.x - radius/2)
+	if (position.x > 0 && position.x <= GetScreenWidth())
 		position.x += speed.x;
 	else
 		position.x += speed.x *=-1;
 
 
-	if (position.y > 0 && position.y <= GetScreenHeight() - radius)
+	if (position.y > 0 && position.y <= GetScreenHeight())
 		position.y += speed.y;
 	else
 		position.y += speed.y *= -1;
@@ -103,6 +107,16 @@ void Meteor::Hit(Texture2D* MediumText, Texture2D* SmallText)
 	case SMALL:
 		Destroy();
 	}
+}
+
+bool Meteor::CheckCollision(Player* player)
+{
+	if (CheckCollisionCircles(position, radius, player->GetPosition(), player->GetRadius()))
+	{
+		return true;
+	}
+
+	return false;
 }
 
 void Meteor::GoMedium(Texture2D* texture) //We need to pass in the Medium texture here

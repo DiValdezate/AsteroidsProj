@@ -38,6 +38,8 @@ public:
 	float GetRotation();
 	void SetRotation(float rotation);
 
+	float GetRadius();
+
 	bool isAlive();
 	void Kill();
 	void Hit();
@@ -46,7 +48,7 @@ public:
 	void TurnRight();
 	void Shoot();
 	void Moving(bool value);
-	bool IsMoving();
+	bool IsMoving();	
 
 };
 
@@ -80,6 +82,7 @@ public:
 	void SetSpeed(Vector2* speed);
 	void InitSpeed();
 	Vector2 GetSpeed();
+	float GetRadius();
 
 	void SetTexture(Texture2D* texture);
 	Texture2D GetTexture();
@@ -93,6 +96,7 @@ public:
 	void Destroy();
 	bool IsDestroyed();
 	void Flip();
+	bool CheckCollision(Player* player);
 };
 
 class Bullet

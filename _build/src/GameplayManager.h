@@ -10,6 +10,7 @@ class GameplayManager
 public:
 
 	int gameTime;
+	int invTime;
 
 	Image titleImg;
 	Texture2D titleText;
@@ -32,5 +33,6 @@ public:
 	void MoveMeteors(std::vector<Meteor>* meteors);
 	void MoveBullets(std::vector<Bullet>* bullets, float rotation);
 	void BulletSpawner(std::vector<Bullet>* bullets, Player* player);
+	void MeteorCollision(std::vector<Meteor>* meteors, Player* player);
 };
 

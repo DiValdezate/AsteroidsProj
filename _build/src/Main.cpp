@@ -16,6 +16,7 @@
 ********************************************************************************************/
 
 #include "raylib.h"
+#include <iostream>
 #include "Entities.h"
 #include "Screens.h"
 #include "GameplayManager.h"
@@ -70,7 +71,7 @@ int main(void)
     {
         // Update
         //----------------------------------------------------------------------------------
-
+        
         switch (currentScreen)
         {
         case LOGO:
@@ -100,9 +101,9 @@ int main(void)
 
             gamePlayManager.MoveMeteors(&meteors); //We move the meteors every frame
 
-            //Player input management
+            //PLAYER INPUT
             // 
-            //MOVEMENT
+            //Movement
             if (IsKeyDown(KEY_UP))
             {
                 player.Moving(true);
@@ -120,6 +121,7 @@ int main(void)
             if (IsKeyDown(KEY_RIGHT))
                 player.TurnRight();
 
+
             //SHOOT
             if (IsKeyPressed(KEY_SPACE))
             {
@@ -127,6 +129,10 @@ int main(void)
             }
             gamePlayManager.MoveBullets(&bullets, player.GetRotation());
 
+
+            //COLLISIONS
+            //
+            gamePlayManager.MeteorCollision(&meteors, &player);
 
 
             break;
@@ -140,7 +146,7 @@ int main(void)
         // Draw
         //----------------------------------------------------------------------------------
         BeginDrawing();
-
+        
         switch (currentScreen)
         {
         case LOGO:
@@ -160,6 +166,7 @@ int main(void)
             DrawPlayer(&player);
             DrawAsteroids(&meteors);
             DrawBullets(&bullets);
+            //DrawCircle(player.GetPosition().x, player.GetPosition().y, player.GetRadius(), RED);
 
 
             break;
