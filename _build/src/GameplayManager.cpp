@@ -120,10 +120,13 @@ void GameplayManager::MeteorCollision(std::vector<Meteor>* meteors, std::vector<
 	for (int i = 0; i < meteors->size(); i++)
 	{
 		if (meteors->at(i).CheckCollision(bullets))
-		{
-			meteors->at(i).Destroy();
-			std::vector<Meteor>::iterator it = meteors->begin() + i;
-			meteors->erase(it);			
+		{			
+			meteors->at(i).Hit(&meteorTexture[1], &meteorTexture[2]);
+			if (meteors->at(i).IsDestroyed())
+			{
+				std::vector<Meteor>::iterator it = meteors->begin() + i;
+				meteors->erase(it);
+			}
 		}
 	}
 }

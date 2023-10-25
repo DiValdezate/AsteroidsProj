@@ -80,6 +80,7 @@ int main(void)
                 currentScreen = TITLE;
 
             break;
+
         case TITLE:            
 
             if (gameTime >= 360 && gameTime % 60 == 0) //Text starts blinking at 6 seconds time.
@@ -88,10 +89,9 @@ int main(void)
             if (IsKeyPressed(KEY_ENTER))
             {
                 currentScreen = GAMEPLAY;                
-            }
-
-            
+            }            
             break;
+
         case GAMEPLAY:            
 
             if (gameTime % 60 == 0) //An asteroid will spawn every second
@@ -102,7 +102,7 @@ int main(void)
             gamePlayManager.MoveMeteors(&meteors); //We move the meteors every frame
 
             //PLAYER INPUT
-            // 
+            //----------------------------------------------------------------------------------
             //Movement
             if (IsKeyDown(KEY_UP))
             {
@@ -123,6 +123,7 @@ int main(void)
 
 
             //SHOOT
+            //----------------------------------------------------------------------------------
             if (IsKeyPressed(KEY_SPACE))
             {
                 gamePlayManager.BulletSpawner(&bullets, &player);
@@ -131,7 +132,7 @@ int main(void)
 
 
             //COLLISIONS
-            //
+            //----------------------------------------------------------------------------------    
             gamePlayManager.MeteorCollision(&meteors, &player); //Meteor vs player
             gamePlayManager.MeteorCollision(&meteors, &bullets); //Meteor vs bullets
 
