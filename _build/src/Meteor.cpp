@@ -94,6 +94,7 @@ void Meteor::Hit(Texture2D* MediumText, Texture2D* SmallText)
 	{
 	case BIG:
 		GoMedium(MediumText);
+		//TO DO Ajustar el radio para que el hitbox sea mas ajustado al tamaño
 		break;
 	case MEDIUM:
 		GoSmall(SmallText);

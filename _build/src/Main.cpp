@@ -26,6 +26,7 @@
 //Variables declaration
 int gameTime;
 int titleYAxis;
+int timeToWin;
 
 GameplayManager gamePlayManager;
 
@@ -55,6 +56,7 @@ int main(void)
     //--------------------------------------------------------------------------------------
     gameTime = 0;
     titleYAxis = -250;
+    
 
     Player player(3);
     std::vector<Meteor> meteors;
@@ -76,15 +78,15 @@ int main(void)
         {
         case LOGO:
             InitLogoScreen();
-            if (gameTime >= 120)
+            if (gamePlayManager.gameTime >= 120)
                 currentScreen = TITLE;
 
             break;
 
         case TITLE:            
-
-            if (gameTime >= 360 && gameTime % 60 == 0) //Text starts blinking at 6 seconds time.
-                DrawText("PRESS [ENTER] TO START", GetScreenWidth() / 2 - 200, GetScreenHeight() / 2,30,YELLOW);  
+            
+            if (gamePlayManager.gameTime >= 360 && gamePlayManager.gameTime % 60 == 0) //Text starts blinking at 6 seconds time.
+                DrawText("PRESS [ENTER] TO START", GetScreenWidth() / 2 - 200, GetScreenHeight() / 2, 30, WHITE);
 
             if (IsKeyPressed(KEY_ENTER))
             {
@@ -92,9 +94,9 @@ int main(void)
             }            
             break;
 
-        case GAMEPLAY:            
-
-            if (gameTime % 60 == 0) //An asteroid will spawn every second
+        case GAMEPLAY:  
+            
+            if (gamePlayManager.gameTime % 60 == 0) //An asteroid will spawn every second
             {
                 gamePlayManager.MeteorSpawner(&meteors);
             }
@@ -137,10 +139,18 @@ int main(void)
             gamePlayManager.MeteorCollision(&meteors, &bullets); //Meteor vs bullets
 
 
+            //CONDITIONS TO GAMEOVER
+            //---------------------------------------------------------------------------------- 
+            if (player.GetLives() <= 0)
+                currentScreen = ENDING;
+            else if (gamePlayManager.LevelCountDown() == -1)
+                currentScreen = ENDING;
+
 
             break;
 
         case ENDING:
+            DrawText("FINISHED", GetScreenWidth() / 2 - 200, GetScreenHeight(), 50, RED);
             break;
 
         }
@@ -156,7 +166,7 @@ int main(void)
             
 
             break;
-        case TITLE:
+        case TITLE:            
             DrawBackground(gamePlayManager.backgroundTexture);
             DrawTitle(titleYAxis,gamePlayManager.titleText);
 
@@ -169,6 +179,7 @@ int main(void)
             DrawPlayer(&player);
             DrawAsteroids(&meteors);
             DrawBullets(&bullets);
+            DrawHUD(&gamePlayManager);
             //DrawCircle(player.GetPosition().x, player.GetPosition().y, player.GetRadius(), RED);
 
 
@@ -186,7 +197,8 @@ int main(void)
 
         EndDrawing();
         //----------------------------------------------------------------------------------
-        gameTime++;
+        
+        gamePlayManager.gameTime++;
     }
 
     // De-Initialization

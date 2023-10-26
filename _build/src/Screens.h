@@ -34,6 +34,7 @@ void DrawTextureExCustom(Texture2D texture, Vector2 position, float rotation, fl
 void DrawPlayer(Player* player);
 void DrawAsteroids(std::vector<Meteor>* met);
 void DrawBullets(std::vector<Bullet>* bullets);
+void DrawHUD(GameplayManager* game);
 
 //Ending screen declarations
 void InitEndingScreen();

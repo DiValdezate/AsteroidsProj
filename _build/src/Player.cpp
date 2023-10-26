@@ -1,12 +1,10 @@
 #include "Entities.h"
+#include "Screens.h"
 
 Player::Player(int lives)
 {
-	if (lives != NULL)
-	{
-		this->lives = 3;
-	}
-
+	
+	this->lives = 3;
 	alive = true;
 	speed = { 0 };
 	position = { 0 };
@@ -85,7 +83,6 @@ float Player::GetRadius()
 }
 
 
-
 void Player::Move()
 {
 	position.x += sin(rotation * DEG2RAD) * PLAYER_SPEED;
@@ -106,7 +103,8 @@ void Player::TurnRight()
 
 void Player::Kill()
 {
-	alive = false;	
+	alive = false;
+	currentScreen = ENDING;	
 }
 
 bool Player::isAlive()

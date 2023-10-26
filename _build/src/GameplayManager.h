@@ -11,6 +11,8 @@ public:
 
 	int gameTime;
 	int invTime;
+	int score;
+	int timeToWin;
 
 	Image titleImg;
 	Texture2D titleText;
@@ -20,6 +22,8 @@ public:
 	Texture2D playerTexture;
 	Image meteorImg[MAX_MET_SIZE];
 	Texture2D meteorTexture[MAX_MET_SIZE];
+	Image playerLivesImg[2];
+	Texture2D playerLivesTexture[2];
 	Image explosionImg;
 	Texture2D explosionTexture;
 	Image bulletImg;
@@ -35,5 +39,7 @@ public:
 	void BulletSpawner(std::vector<Bullet>* bullets, Player* player);
 	void MeteorCollision(std::vector<Meteor>* meteors, Player* player);
 	void MeteorCollision(std::vector<Meteor>* meteors, std::vector<Bullet>* bullets);
+	int LevelCountDown();
+	
 };
 

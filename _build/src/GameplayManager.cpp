@@ -1,4 +1,5 @@
 #include "GameplayManager.h"
+#include "Screens.h"
 #include <iostream>
 #include <string>
 
@@ -6,6 +7,8 @@ GameplayManager::GameplayManager()
 {
 	gameTime = 0;	
 	invTime = 0;
+	score = 0;
+	timeToWin = 1000;
 
 	titleImg = { 0 };
 	titleText = { 0 };
@@ -13,8 +16,10 @@ GameplayManager::GameplayManager()
 	backgroundTexture = { 0 };
 	playerImg = { 0 };
 	playerTexture = { 0 };
-	meteorImg[MAX_MET_SIZE] = {0,0,0};
-	meteorTexture[MAX_MET_SIZE] = {0,0,0};
+	meteorImg[MAX_MET_SIZE] = { 0 };
+	meteorTexture[MAX_MET_SIZE] = { 0 };
+	playerLivesImg[2] = { 0 };
+	playerLivesTexture[2] = { 0 };
 	explosionImg = { 0 };
 	explosionTexture = { 0 };
 	bulletImg = { 0 };
@@ -38,6 +43,12 @@ void GameplayManager::LoadTextures() //This function loads all textures before t
 
 	bulletImg = LoadImage("resources/textures/Fire.png");
 	bulletTexture = LoadTextureFromImage(bulletImg);
+
+	playerLivesImg[0] = LoadImage("resources/textures/Life_Active.png");
+	playerLivesImg[1] = LoadImage("resources/textures/Life_Inactive.png");
+
+	playerLivesTexture[0] = LoadTextureFromImage(playerLivesImg[0]);
+	playerLivesTexture[1] = LoadTextureFromImage(playerLivesImg[1]);
 
 
 	meteorImg[0] = LoadImage("resources/textures/BigMeteor.png");
@@ -130,6 +141,17 @@ void GameplayManager::MeteorCollision(std::vector<Meteor>* meteors, std::vector<
 		}
 	}
 }
+
+int GameplayManager::LevelCountDown() //Returns the remaining time to survive, and if its 0 or less, returns -1, so we know we cleared the game
+{
+	if (((timeToWin - gameTime) / 60) >= 0)
+		return (timeToWin - gameTime) / 60;
+	else
+		return -1;
+}
+
+
+
 
 
 
