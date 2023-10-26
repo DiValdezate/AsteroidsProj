@@ -61,16 +61,42 @@ void DrawBackground(Texture2D texture)
 	DrawTextureEx(texture, { 0,0 }, 0, 1, WHITE);
 }
 
-void DrawHUD(GameplayManager* game)
+void DrawHUD(GameplayManager* game, Player* player)
 {
 	char text[10];
 	char* text2 = "Survive!";	
-	
+	int playerLives = player->GetLives();
+
 	sprintf(text, "%d", game->LevelCountDown());
 	
 	DrawText(text, 125, 10, 20, WHITE);
 	DrawText(text2, 30, 10, 20, WHITE);
 
 
-	
+	switch (playerLives)
+	{
+	case 3:
+		DrawTexture(game->playerLivesTexture[0], 20, 420, WHITE);
+		DrawTexture(game->playerLivesTexture[0], 60, 420, WHITE);
+		DrawTexture(game->playerLivesTexture[0], 100, 420, WHITE);
+	break;
+
+	case 2:
+		DrawTexture(game->playerLivesTexture[0], 20, 420, WHITE);
+		DrawTexture(game->playerLivesTexture[0], 60, 420, WHITE);
+		DrawTexture(game->playerLivesTexture[1], 100, 420, WHITE);
+	break;
+
+	case 1:
+		DrawTexture(game->playerLivesTexture[0], 20, 420, WHITE);
+		DrawTexture(game->playerLivesTexture[1], 60, 420, WHITE);
+		DrawTexture(game->playerLivesTexture[1], 100, 420, WHITE);
+	break;
+
+	case 0:
+		DrawTexture(game->playerLivesTexture[1], 20, 420, WHITE);
+		DrawTexture(game->playerLivesTexture[1], 60, 420, WHITE);
+		DrawTexture(game->playerLivesTexture[1], 100, 420, WHITE);
+	break;
+	}
 }

@@ -29,6 +29,11 @@ public:
 	Image bulletImg;
 	Texture2D bulletTexture;
 
+	Image GameOverImg;
+	Texture2D GameOverTexture;
+	Image WinImg;
+	Texture2D WinTexture;
+
 public:
 
 	GameplayManager();

@@ -8,7 +8,8 @@ enum GameScreen
 	LOGO,
 	TITLE,
 	GAMEPLAY,
-	ENDING
+	WIN,
+	LOSE
 };
 
 //Variable declarations
@@ -34,10 +35,11 @@ void DrawTextureExCustom(Texture2D texture, Vector2 position, float rotation, fl
 void DrawPlayer(Player* player);
 void DrawAsteroids(std::vector<Meteor>* met);
 void DrawBullets(std::vector<Bullet>* bullets);
-void DrawHUD(GameplayManager* game);
+void DrawHUD(GameplayManager* game, Player* player);
 
 //Ending screen declarations
-void InitEndingScreen();
+void DrawWinScreen(GameplayManager* game);
+void DrawLoseScreen(GameplayManager* game);
 
 
 

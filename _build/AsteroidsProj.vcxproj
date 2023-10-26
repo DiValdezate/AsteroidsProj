@@ -266,6 +266,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Bullet.cpp" />
+    <ClCompile Include="src\EndScreen.cpp" />
     <ClCompile Include="src\Gameplay.cpp" />
     <ClCompile Include="src\GameplayManager.cpp" />
     <ClCompile Include="src\Logo.cpp" />

@@ -142,17 +142,17 @@ int main(void)
             //CONDITIONS TO GAMEOVER
             //---------------------------------------------------------------------------------- 
             if (player.GetLives() <= 0)
-                currentScreen = ENDING;
+                currentScreen = LOSE;
             else if (gamePlayManager.LevelCountDown() == -1)
-                currentScreen = ENDING;
+                currentScreen = WIN;
 
 
             break;
 
-        case ENDING:
-            DrawText("FINISHED", GetScreenWidth() / 2 - 200, GetScreenHeight(), 50, RED);
+        case WIN:           
             break;
-
+        case LOSE:
+            break;
         }
 
 
@@ -179,13 +179,24 @@ int main(void)
             DrawPlayer(&player);
             DrawAsteroids(&meteors);
             DrawBullets(&bullets);
-            DrawHUD(&gamePlayManager);
+            DrawHUD(&gamePlayManager, &player);
             //DrawCircle(player.GetPosition().x, player.GetPosition().y, player.GetRadius(), RED);
 
 
             break;
 
-        case ENDING:
+        case WIN:
+
+            DrawBackground(gamePlayManager.backgroundTexture);
+            DrawWinScreen(&gamePlayManager);
+
+            break;
+
+        case LOSE:
+
+            DrawBackground(gamePlayManager.backgroundTexture);
+            DrawLoseScreen(&gamePlayManager);
+
             break;
 
         }

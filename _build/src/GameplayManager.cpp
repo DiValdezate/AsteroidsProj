@@ -24,6 +24,10 @@ GameplayManager::GameplayManager()
 	explosionTexture = { 0 };
 	bulletImg = { 0 };
 	bulletTexture = { 0 };
+	GameOverImg = { 0 };
+	GameOverTexture = { 0 };
+	WinImg = { 0 };
+	WinTexture = { 0 };
 
 }
 
@@ -58,6 +62,11 @@ void GameplayManager::LoadTextures() //This function loads all textures before t
 	meteorTexture[0] = LoadTextureFromImage(meteorImg[0]); //Texture for BIG asteroid.
 	meteorTexture[1] = LoadTextureFromImage(meteorImg[1]); //Texture for MEDIUM asteroid.
 	meteorTexture[2] = LoadTextureFromImage(meteorImg[2]); //Texture for SMALL asteroid.
+
+	GameOverImg = LoadImage("resources/textures/GameOver.png");
+	GameOverTexture = LoadTextureFromImage(GameOverImg);
+	WinImg = LoadImage("resources/textures/Win.png");
+	WinTexture = LoadTextureFromImage(WinImg);
 
 
 }
@@ -109,24 +118,23 @@ void GameplayManager::BulletSpawner(std::vector<Bullet>* bullets, Player* player
 	bullets->push_back(bullet);
 }
 
-void GameplayManager::MeteorCollision(std::vector<Meteor>* meteors, Player* player)
+
+void GameplayManager::MeteorCollision(std::vector<Meteor>* meteors, Player* player) //Collision vs player
 {	
+	invTime++;
 	for (int i = 0; i < meteors->size(); i++)
 	{			
-		if (meteors->at(i).CheckCollision(player) && invTime >= 120)
+		if (meteors->at(i).CheckCollision(player) && invTime >= 120) //Only true if it's been at least 2 seconds since the last hit.
 		{
 			std::cout << player->GetLives();			
-			player->Hit();			
-			invTime = 0;
+			player->Hit();				
+			invTime = 0; //Reset the invulnerability time every hit. 
 		}
-		else
-		{
-			invTime++;
-		}
+
 	}
 }
 
-void GameplayManager::MeteorCollision(std::vector<Meteor>* meteors, std::vector<Bullet>* bullets)
+void GameplayManager::MeteorCollision(std::vector<Meteor>* meteors, std::vector<Bullet>* bullets) //Collision vs bullets
 {
 	for (int i = 0; i < meteors->size(); i++)
 	{

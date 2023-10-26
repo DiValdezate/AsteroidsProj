@@ -103,8 +103,7 @@ void Player::TurnRight()
 
 void Player::Kill()
 {
-	alive = false;
-	currentScreen = ENDING;	
+	alive = false;	
 }
 
 bool Player::isAlive()
