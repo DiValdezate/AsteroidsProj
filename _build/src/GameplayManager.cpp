@@ -7,6 +7,7 @@ GameplayManager::GameplayManager()
 {
 	gameTime = 0;	
 	invTime = 0;
+
 	score = 0;
 	timeToWin = 1000;
 
@@ -140,7 +141,8 @@ void GameplayManager::MeteorCollision(std::vector<Meteor>* meteors, std::vector<
 	{
 		if (meteors->at(i).CheckCollision(bullets))
 		{			
-			meteors->at(i).Hit(&meteorTexture[1], &meteorTexture[2]);
+			meteors->at(i).Hit(&meteorTexture[1], &meteorTexture[2], score);
+			
 			if (meteors->at(i).IsDestroyed())
 			{
 				std::vector<Meteor>::iterator it = meteors->begin() + i;

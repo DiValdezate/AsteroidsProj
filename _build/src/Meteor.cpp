@@ -1,4 +1,6 @@
 #include "Entities.h"
+#include "GameplayManager.h"
+
 
 Meteor::Meteor()
 {
@@ -9,6 +11,7 @@ Meteor::Meteor()
 	texture = { 0 };
 	radius = 30.0f;
 	isMoving = false;
+	
 }
 
 
@@ -88,18 +91,20 @@ void Meteor::Move()
 		position.y += speed.y *= -1;
 }
 
-void Meteor::Hit(Texture2D* MediumText, Texture2D* SmallText)
+void Meteor::Hit(Texture2D* MediumText, Texture2D* SmallText, int& score)
 {
 	switch (size)
 	{
 	case BIG:
-		GoMedium(MediumText);
-		//TO DO Ajustar el radio para que el hitbox sea mas ajustado al tamaño
+		GoMedium(MediumText);	
+		score += 10;
 		break;
 	case MEDIUM:
 		GoSmall(SmallText);
+		score += 20;
 		break;
 	case SMALL:
+		score += 30;
 		Destroy();
 	}
 }

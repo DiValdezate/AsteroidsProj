@@ -117,7 +117,7 @@ public:
 	void Move();
 	void SetMoving(bool value);
 	bool IsMoving();
-	void Hit(Texture2D* MediumText, Texture2D* SmallText);
+	void Hit(Texture2D* MediumText, Texture2D* SmallText, int &score);
 	void GoMedium(Texture2D* texture);
 	void GoSmall(Texture2D* texture);
 	void Destroy();
