@@ -3,20 +3,8 @@
 #include "Screens.h"
 
 
-
-Font defaultFont;
-
-
-
-void InitLogoScreen()
+void InitLogo(Texture2D texture)
 {
-	
-	
-	
+	DrawTextureEx(texture, { -60,-60 },0,0.6f, WHITE);
 }
-
-void UpdateLogoScreen()
-{
-}
-	
 

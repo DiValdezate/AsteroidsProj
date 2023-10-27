@@ -4,13 +4,6 @@
 
 
 
-void LoadTextTextures()
-{
-	
-
-}
-
-
 void DrawTitle(int y, Texture2D texture)
 {
 	int limit = -75; //This will stop the title in this position in the Y axis.
@@ -18,5 +11,6 @@ void DrawTitle(int y, Texture2D texture)
 	Vector2 textPos = { 200.0, (float)y };
 
 	DrawTextureEx(texture, textPos, 0, 2, WHITE);
-
 }
+
+

@@ -9,8 +9,10 @@ GameplayManager::GameplayManager()
 	invTime = 0;
 
 	score = 0;
-	timeToWin = 1000;
+	timeToWin = 600;
 
+	logoImg = { 0 };
+	logoTexture = { 0 };
 	titleImg = { 0 };
 	titleText = { 0 };
 	background = { 0 };
@@ -30,10 +32,14 @@ GameplayManager::GameplayManager()
 	WinImg = { 0 };
 	WinTexture = { 0 };
 
+
 }
 
 void GameplayManager::LoadTextures() //This function loads all textures before the game starts
 {
+	logoImg = LoadImage("resources/textures/splash.png");
+	logoTexture = LoadTextureFromImage(logoImg);
+
 	titleImg = LoadImage("resources/textures/Title.png");
 	titleText = LoadTextureFromImage(titleImg);
 
@@ -158,6 +164,11 @@ int GameplayManager::LevelCountDown() //Returns the remaining time to survive, a
 		return (timeToWin - gameTime) / 60;
 	else
 		return -1;
+}
+
+void GameplayManager::ResetGame()
+{
+
 }
 
 

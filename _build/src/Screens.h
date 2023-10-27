@@ -15,21 +15,18 @@ enum GameScreen
 //Variable declarations
 static GameScreen currentScreen;
 
-//Background image
+
+//Genral methods declarations
 void DrawBackground(Texture2D texture);
+void BlinkingMessage(int time, char* text);
 
 //Logo screen declarations
-void InitLogoScreen();
-void UpdateLogoScreen();
+void InitLogo(Texture2D texture);
 
 //Title screen declarations
-void InitTitleScreen();
-void DrawTitleBackground(Texture2D texture);
-void LoadTextTextures();
 void DrawTitle(int y, Texture2D texture);
 
 //Gameplay screen declarations
-void InitGamePlayScreen();
 void LoadGameTextures();
 void DrawTextureExCustom(Texture2D texture, Vector2 position, float rotation, float scale, Color tint);
 void DrawPlayer(Player* player);

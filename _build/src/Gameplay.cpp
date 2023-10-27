@@ -56,21 +56,23 @@ void DrawBullets(std::vector<Bullet>* bullets)
 
 }
 
-void DrawBackground(Texture2D texture)
-{
-	DrawTextureEx(texture, { 0,0 }, 0, 1, WHITE);
-}
 
 void DrawHUD(GameplayManager* game, Player* player)
 {
-	char text[10];
-	char* text2 = "Survive!";	
+	char timeText[10];	
+	char scoreText[50];
+
 	int playerLives = player->GetLives();
 
-	sprintf(text, "%d", game->LevelCountDown());
+		
+	sprintf(timeText, "%d", game->LevelCountDown());
+	sprintf(scoreText, "%d", game->score);
 	
-	DrawText(text, 125, 10, 20, WHITE);
-	DrawText(text2, 30, 10, 20, WHITE);
+	DrawText("Survive!", 30, 10, 20, WHITE);
+	DrawText(timeText, 125, 10, 20, WHITE);
+
+	DrawText("SCORE: ", 650, 10, 20, WHITE);
+	DrawText(scoreText, 750, 10, 20, WHITE);
 
 
 	switch (playerLives)

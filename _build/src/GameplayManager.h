@@ -14,6 +14,8 @@ public:
 	int score;
 	int timeToWin;
 
+	Image logoImg;
+	Texture2D logoTexture;
 	Image titleImg;
 	Texture2D titleText;
 	Image background;
@@ -45,6 +47,6 @@ public:
 	void MeteorCollision(std::vector<Meteor>* meteors, Player* player);
 	void MeteorCollision(std::vector<Meteor>* meteors, std::vector<Bullet>* bullets);
 	int LevelCountDown();
-	
+	void ResetGame();	
 };
 

@@ -71,22 +71,19 @@ int main(void)
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
-        // Update
+        // UPDATE
         //----------------------------------------------------------------------------------
         
         switch (currentScreen)
         {
         case LOGO:
-            InitLogoScreen();
+            
             if (gamePlayManager.gameTime >= 120)
                 currentScreen = TITLE;
 
             break;
 
-        case TITLE:            
-            
-            if (gamePlayManager.gameTime >= 360 && gamePlayManager.gameTime % 60 == 0) //Text starts blinking at 6 seconds time.
-                DrawText("PRESS [ENTER] TO START", GetScreenWidth() / 2 - 200, GetScreenHeight() / 2, 30, WHITE);
+        case TITLE:           
 
             if (IsKeyPressed(KEY_ENTER))
             {
@@ -94,8 +91,8 @@ int main(void)
             }            
             break;
 
-        case GAMEPLAY:  
-            
+        case GAMEPLAY:
+
             if (gamePlayManager.gameTime % 60 == 0) //An asteroid will spawn every second
             {
                 gamePlayManager.MeteorSpawner(&meteors);
@@ -149,14 +146,18 @@ int main(void)
 
             break;
 
-        case WIN:           
+        case WIN:
+            if (IsKeyPressed(KEY_ENTER))
+                currentScreen = TITLE;
             break;
         case LOSE:
+            if (IsKeyPressed(KEY_ENTER))
+                currentScreen = GAMEPLAY;
             break;
         }
 
 
-        // Draw
+        // DRAW
         //----------------------------------------------------------------------------------
         BeginDrawing();
         
@@ -164,11 +165,13 @@ int main(void)
         {
         case LOGO:
             
-
+            InitLogo(gamePlayManager.logoTexture);
             break;
         case TITLE:            
             DrawBackground(gamePlayManager.backgroundTexture);
             DrawTitle(titleYAxis,gamePlayManager.titleText);
+            if(gamePlayManager.gameTime > 240)
+                BlinkingMessage(gamePlayManager.gameTime, "Press START to play the game");
 
             if (titleYAxis < -75)//This is the limit on the Y axis, when reached, the title texture stops moving. 
                 titleYAxis++;          
@@ -180,7 +183,7 @@ int main(void)
             DrawAsteroids(&meteors);
             DrawBullets(&bullets);
             DrawHUD(&gamePlayManager, &player);
-            //DrawCircle(player.GetPosition().x, player.GetPosition().y, player.GetRadius(), RED);
+        
 
 
             break;
@@ -189,6 +192,7 @@ int main(void)
 
             DrawBackground(gamePlayManager.backgroundTexture);
             DrawWinScreen(&gamePlayManager);
+            BlinkingMessage(gamePlayManager.gameTime, "Press START to go to main menu");
 
             break;
 
@@ -196,7 +200,7 @@ int main(void)
 
             DrawBackground(gamePlayManager.backgroundTexture);
             DrawLoseScreen(&gamePlayManager);
-
+            BlinkingMessage(gamePlayManager.gameTime, "Press START to try again");
             break;
 
         }
