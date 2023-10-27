@@ -166,11 +166,37 @@ int GameplayManager::LevelCountDown() //Returns the remaining time to survive, a
 		return -1;
 }
 
-void GameplayManager::ResetGame()
+void GameplayManager::InitGame(Player* player, std::vector<Bullet>* bullets, std::vector<Meteor>* meteors)
 {
+	gameTime = 0;
+	invTime = 0;
+	score = 0;
+	timeToWin = 600;
+
+	player->SetLives(3);
+	player->SetPosition({ (float)GetScreenWidth() / 2, (float)GetScreenHeight() / 2 });
+	player->SetRotation(0.0f);
+	bullets->clear();
+	meteors->clear();
 
 }
 
+void GameplayManager::UnloadTextures()
+{
+	UnloadImage(logoImg);
+	UnloadImage(titleImg);
+	UnloadImage(background);
+	UnloadImage(playerImg);
+	UnloadImage(meteorImg[0]);
+	UnloadImage(meteorImg[1]);
+	UnloadImage(meteorImg[2]);
+	UnloadImage(playerLivesImg[0]);
+	UnloadImage(playerLivesImg[1]);
+	UnloadImage(bulletImg);
+	UnloadImage(GameOverImg);
+	UnloadImage(WinImg);
+	
+}
 
 
 

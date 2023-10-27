@@ -30,7 +30,7 @@ public:
 	void SetLives(int lives);
 
 	Vector2 GetPosition();
-	void SetPosition(Vector2* position);
+	void SetPosition(Vector2 position);
 
 	Texture2D GetTexture();	
 	void SetTexture(Texture2D* texture);

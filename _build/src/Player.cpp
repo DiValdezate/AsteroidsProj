@@ -42,9 +42,9 @@ void Player::SetLives(int lives)
 }
 
 
-void Player::SetPosition(Vector2* position)
+void Player::SetPosition(Vector2 position)
 {
-	this->position = *position;
+	this->position = position;
 }
 
 

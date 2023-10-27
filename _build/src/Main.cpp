@@ -47,10 +47,7 @@ int main(void)
     //Textures initialization
     //--------------------------------------------------------------------------------------
 
-    gamePlayManager.LoadTextures();
-
-
-    
+    gamePlayManager.LoadTextures();    
 
     //Variables initialization
     //--------------------------------------------------------------------------------------
@@ -62,7 +59,7 @@ int main(void)
     std::vector<Meteor> meteors;
     std::vector<Bullet> bullets;
     
-    player.SetPosition(new Vector2({ screenWidth / 2, screenHeight / 2 }));
+    player.SetPosition({ screenWidth / 2, screenHeight / 2 });
     player.SetTexture(&gamePlayManager.playerTexture);
 
     SetTargetFPS(60);
@@ -91,7 +88,8 @@ int main(void)
             }            
             break;
 
-        case GAMEPLAY:
+        case GAMEPLAY:            
+
 
             if (gamePlayManager.gameTime % 60 == 0) //An asteroid will spawn every second
             {
@@ -147,10 +145,12 @@ int main(void)
             break;
 
         case WIN:
+            gamePlayManager.InitGame(&player, &bullets, &meteors);
             if (IsKeyPressed(KEY_ENTER))
                 currentScreen = TITLE;
             break;
         case LOSE:
+            gamePlayManager.InitGame(&player, &bullets, &meteors);
             if (IsKeyPressed(KEY_ENTER))
                 currentScreen = GAMEPLAY;
             break;
@@ -182,10 +182,7 @@ int main(void)
             DrawPlayer(&player);
             DrawAsteroids(&meteors);
             DrawBullets(&bullets);
-            DrawHUD(&gamePlayManager, &player);
-        
-
-
+            DrawHUD(&gamePlayManager, &player);     
             break;
 
         case WIN:
@@ -220,6 +217,7 @@ int main(void)
     //--------------------------------------------------------------------------------------
 
     // TODO: Unload all loaded resources at this point
+    gamePlayManager.UnloadTextures();
 
     CloseWindow();        // Close window and OpenGL context
     //--------------------------------------------------------------------------------------

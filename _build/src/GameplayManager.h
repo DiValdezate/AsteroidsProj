@@ -47,6 +47,7 @@ public:
 	void MeteorCollision(std::vector<Meteor>* meteors, Player* player);
 	void MeteorCollision(std::vector<Meteor>* meteors, std::vector<Bullet>* bullets);
 	int LevelCountDown();
-	void ResetGame();	
+	void InitGame(Player* player, std::vector<Bullet>* bullets, std::vector<Meteor>* meteors);
+	void UnloadTextures();
 };
 
