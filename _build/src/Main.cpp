@@ -65,7 +65,7 @@ int main(void)
     std::vector<Meteor> meteors;
     std::vector<Bullet> bullets;
     
-    player.SetPosition({ screenWidth / 2, screenHeight / 2 });
+    //player.SetPosition({ screenWidth / 2, screenHeight / 2 });
     player.SetTexture(&gamePlayManager.playerTexture);
 
     SetTargetFPS(60);
@@ -88,8 +88,8 @@ int main(void)
 
         case TITLE:           
 
-            PlayMusicStream(gamePlayManager.Menu);
-            UpdateMusicStream(gamePlayManager.Menu);
+            PlayMusicStream(gamePlayManager.menu);
+            UpdateMusicStream(gamePlayManager.menu);
             
 
             if (IsKeyPressed(KEY_ENTER))
@@ -99,9 +99,10 @@ int main(void)
             break;
 
         case GAMEPLAY:            
+            StopMusicStream(gamePlayManager.menu);//Stop the previous music
 
-            PlayMusicStream(gamePlayManager.Game);
-            UpdateMusicStream(gamePlayManager.Game);
+            PlayMusicStream(gamePlayManager.game);
+            UpdateMusicStream(gamePlayManager.game);
 
             if (gamePlayManager.gameTime % 60 == 0) //An asteroid will spawn every second
             {
@@ -135,6 +136,7 @@ int main(void)
             //----------------------------------------------------------------------------------
             if (IsKeyPressed(KEY_SPACE))
             {
+                PlaySound(gamePlayManager.shoot);
                 gamePlayManager.BulletSpawner(&bullets, &player);
             }
             gamePlayManager.MoveBullets(&bullets, player.GetRotation());
@@ -157,16 +159,18 @@ int main(void)
             break;
 
         case WIN:
-            PlayMusicStream(gamePlayManager.Win);
-            UpdateMusicStream(gamePlayManager.Win);
+            StopMusicStream(gamePlayManager.game);//Stop the previous music
+            PlayMusicStream(gamePlayManager.win);
+            UpdateMusicStream(gamePlayManager.win);
 
             gamePlayManager.InitGame(&player, &bullets, &meteors);
             if (IsKeyPressed(KEY_ENTER))
                 currentScreen = TITLE;
             break;
         case LOSE:
-            PlayMusicStream(gamePlayManager.Lose);
-            UpdateMusicStream(gamePlayManager.Lose);
+            StopMusicStream(gamePlayManager.game);//Stop the previous music
+            PlayMusicStream(gamePlayManager.lose);
+            UpdateMusicStream(gamePlayManager.lose);
             gamePlayManager.InitGame(&player, &bullets, &meteors);
             if (IsKeyPressed(KEY_ENTER))
                 currentScreen = GAMEPLAY;

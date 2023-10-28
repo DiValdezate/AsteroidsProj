@@ -7,7 +7,7 @@ Player::Player(int lives)
 	this->lives = 3;
 	alive = true;
 	speed = { 0 };
-	position = { 0 };
+	position = { (float) GetScreenWidth() / 2,(float) GetScreenHeight() / 2 };
 	texture = { 0 };
 	radius = 15.0f;
 	rotation = 0.0f;
@@ -121,17 +121,13 @@ bool Player::IsMoving()
 	return moving;
 }
 
-void Player::Shoot()
-{
-
-}
-
-
 void Player::Hit()
 {
 	if (lives > 0)
 	{
+		SetPosition({ (float)GetScreenWidth() / 2, (float)GetScreenHeight() / 2 });
 		lives--;
+
 	}
 	else
 	{

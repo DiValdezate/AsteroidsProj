@@ -27,13 +27,13 @@ GameplayManager::GameplayManager()
 	explosionTexture = { 0 };
 	bulletImg = { 0 };
 	bulletTexture = { 0 };
-	GameOverImg = { 0 };
-	GameOverTexture = { 0 };
-	WinImg = { 0 };
-	WinTexture = { 0 };
+	gameOverImg = { 0 };
+	gameOverTexture = { 0 };
+	winImg = { 0 };
+	winTexture = { 0 };
 
 	//AUDIO
-	Menu = { 0 };
+	menu = { 0 };
 
 }
 
@@ -72,20 +72,27 @@ void GameplayManager::LoadTextures() //This function loads all textures before t
 	meteorTexture[1] = LoadTextureFromImage(meteorImg[1]); //Texture for MEDIUM asteroid.
 	meteorTexture[2] = LoadTextureFromImage(meteorImg[2]); //Texture for SMALL asteroid.
 
-	GameOverImg = LoadImage("resources/textures/GameOver.png");
-	GameOverTexture = LoadTextureFromImage(GameOverImg);
-	WinImg = LoadImage("resources/textures/Win.png");
-	WinTexture = LoadTextureFromImage(WinImg);
+	gameOverImg = LoadImage("resources/textures/GameOver.png");
+	gameOverTexture = LoadTextureFromImage(gameOverImg);
+	winImg = LoadImage("resources/textures/Win.png");
+	winTexture = LoadTextureFromImage(winImg);
 
 
 }
 
 void GameplayManager::LoadAudio()
 {
-	Menu = LoadMusicStream("resources/Menu.wav");
-	Game = LoadMusicStream("resources/Game.wav");
-	Win = LoadMusicStream("resources/Win.wav");
-	Lose = LoadMusicStream("resources/Lose.wav");
+	//MUSIC
+	menu = LoadMusicStream("resources/Menu.wav");
+	game = LoadMusicStream("resources/Game.wav");
+	win = LoadMusicStream("resources/Win.wav");
+	lose = LoadMusicStream("resources/Lose.wav");
+
+	//EFFECTS
+	shoot = LoadSound("resources/Shoot.wav");
+	enemyHit = LoadSound("resources/EnemyHit.wav");
+	playerHit = LoadSound("resources/PlayerHit.wav");
+
 }
 
 void GameplayManager::MeteorSpawner(std::vector<Meteor>* meteors)
@@ -143,6 +150,7 @@ void GameplayManager::MeteorCollision(std::vector<Meteor>* meteors, Player* play
 	{			
 		if (meteors->at(i).CheckCollision(player) && invTime >= 120) //Only true if it's been at least 2 seconds since the last hit.
 		{
+			PlaySound(playerHit);
 			std::cout << player->GetLives();			
 			player->Hit();				
 			invTime = 0; //Reset the invulnerability time every hit. 
@@ -156,7 +164,8 @@ void GameplayManager::MeteorCollision(std::vector<Meteor>* meteors, std::vector<
 	for (int i = 0; i < meteors->size(); i++)
 	{
 		if (meteors->at(i).CheckCollision(bullets))
-		{			
+		{		
+			PlaySound(enemyHit);
 			meteors->at(i).Hit(&meteorTexture[1], &meteorTexture[2], score);
 			
 			if (meteors->at(i).IsDestroyed())
@@ -203,8 +212,8 @@ void GameplayManager::UnloadTextures()
 	UnloadImage(playerLivesImg[0]);
 	UnloadImage(playerLivesImg[1]);
 	UnloadImage(bulletImg);
-	UnloadImage(GameOverImg);
-	UnloadImage(WinImg);
+	UnloadImage(gameOverImg);
+	UnloadImage(winImg);
 	
 }
 

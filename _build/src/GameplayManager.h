@@ -31,16 +31,20 @@ public:
 	Texture2D explosionTexture;
 	Image bulletImg;
 	Texture2D bulletTexture;
-	Image GameOverImg;
-	Texture2D GameOverTexture;
-	Image WinImg;
-	Texture2D WinTexture;
+	Image gameOverImg;
+	Texture2D gameOverTexture;
+	Image winImg;
+	Texture2D winTexture;
 
 	//AUDIO
-	Music Menu;
-	Music Game;
-	Music Win;
-	Music Lose;
+	Music menu;
+	Music game;
+	Music win;
+	Music lose;
+
+	Sound shoot;
+	Sound enemyHit;
+	Sound playerHit;
 	
 
 public:

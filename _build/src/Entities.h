@@ -46,7 +46,6 @@ public:
 	void Move(); 
 	void TurnLeft();
 	void TurnRight();
-	void Shoot();
 	void Moving(bool value);
 	bool IsMoving();	
 

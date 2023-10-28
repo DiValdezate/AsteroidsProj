@@ -93,6 +93,7 @@ void Meteor::Move()
 
 void Meteor::Hit(Texture2D* MediumText, Texture2D* SmallText, int& score)
 {
+
 	switch (size)
 	{
 	case BIG:
