@@ -83,6 +83,16 @@ float Player::GetRadius()
 	return radius;
 }
 
+void Player::SetTripleShot(bool value)
+{
+	tripleShot = value;
+}
+
+bool Player::GetTripleShot()
+{
+	return tripleShot;
+}
+
 
 void Player::Move()
 {

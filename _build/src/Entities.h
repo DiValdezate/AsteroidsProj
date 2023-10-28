@@ -49,6 +49,8 @@ public:
 	void TurnRight();
 	void Moving(bool value);
 	bool IsMoving();	
+	void SetTripleShot(bool value);
+	bool GetTripleShot();
 
 };
 

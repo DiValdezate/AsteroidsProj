@@ -57,9 +57,12 @@ void DrawBullets(std::vector<Bullet>* bullets)
 
 void DrawPowerUp(PowerUp* powerup)
 {
-	Vector2 correctedPosition = { powerup->GetPosition().x - 50, powerup->GetPosition().y - 50 };
-	DrawTextureExCustom(powerup->GetTexture(), correctedPosition,0,2, WHITE);	
-	DrawCircle(powerup->GetPosition().x, powerup->GetPosition().y, powerup->GetRadius(), RED);
+	if (powerup->IsCollected() == false)
+	{
+		Vector2 correctedPosition = { powerup->GetPosition().x - 50, powerup->GetPosition().y - 50 };
+		DrawTextureExCustom(powerup->GetTexture(), correctedPosition,0,2, WHITE);
+	}
+	
 }
 
 void DrawHUD(GameplayManager* game, Player* player)

@@ -64,9 +64,9 @@ public:
 	void BulletSpawner(std::vector<Bullet>* bullets, Player* player); //Creates a bullet and stores it in the bullets vector
 	void MeteorCollision(std::vector<Meteor>* meteors, Player* player); //Checks meteor collision vs player
 	void MeteorCollision(std::vector<Meteor>* meteors, std::vector<Bullet>* bullets); //Checks meteor collision vs bullets
-	void PowerUpCollision();
+	void PowerUpCollision(PowerUp* powerUp, Player* player);
 	int LevelCountDown();
-	void InitGame(Player* player, std::vector<Bullet>* bullets, std::vector<Meteor>* meteors);
+	void InitGame(Player* player, std::vector<Bullet>* bullets, std::vector<Meteor>* meteors, PowerUp* powerup);
 	void UnloadTextures();
 	void UnloadAudio();
 	void PowerUpSpawn(PowerUp* powerUp);

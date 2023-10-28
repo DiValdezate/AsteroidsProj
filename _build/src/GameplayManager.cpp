@@ -138,11 +138,30 @@ void GameplayManager::MoveBullets(std::vector<Bullet>* bullets, float rotation)
 
 void GameplayManager::BulletSpawner(std::vector<Bullet>* bullets, Player* player)
 {
-	Bullet bullet(player->GetRotation());
-	bullet.SetPosition(player->GetPosition().x, player->GetPosition().y);
-	bullet.SetTexture(&bulletTexture);
+	if (player->GetTripleShot())
+	{
+		Bullet bullet1(player->GetRotation());
+		Bullet bullet2(player->GetRotation());
+		Bullet bullet3(player->GetRotation());
+		bullet1.SetPosition(player->GetPosition().x, player->GetPosition().y);
+		bullet2.SetPosition(player->GetPosition().x + 10 , player->GetPosition().y);
+		bullet3.SetPosition(player->GetPosition().x - 10 * player->GetRotation(), player->GetPosition().y);
+		bullet1.SetTexture(&bulletTexture);
+		bullet2.SetTexture(&bulletTexture);
+		bullet3.SetTexture(&bulletTexture);
+			
+		bullets->push_back(bullet1);
+		bullets->push_back(bullet2);
+		bullets->push_back(bullet3);
+	}
+	else
+	{
+		Bullet bullet(player->GetRotation());
+		bullet.SetPosition(player->GetPosition().x, player->GetPosition().y);
+		bullet.SetTexture(&bulletTexture);
 
-	bullets->push_back(bullet);
+		bullets->push_back(bullet);
+	}
 }
 
 
@@ -180,6 +199,15 @@ void GameplayManager::MeteorCollision(std::vector<Meteor>* meteors, std::vector<
 	}
 }
 
+void GameplayManager::PowerUpCollision(PowerUp* powerUp, Player* player)
+{
+	if (CheckCollisionCircles(powerUp->GetPosition(), powerUp->GetRadius(), player->GetPosition(), player->GetRadius()))
+	{
+		powerUp->SetCollected(true);
+		player->SetTripleShot(true);		
+	}
+}
+
 
 
 void GameplayManager::PowerUpSpawn(PowerUp* powerUp)
@@ -199,16 +227,18 @@ int GameplayManager::LevelCountDown() //Returns the remaining time to survive, a
 		return -1;
 }
 
-void GameplayManager::InitGame(Player* player, std::vector<Bullet>* bullets, std::vector<Meteor>* meteors)
+void GameplayManager::InitGame(Player* player, std::vector<Bullet>* bullets, std::vector<Meteor>* meteors, PowerUp* powerUp)
 {
 	gameTime = 0;
 	invTime = 0;
 	score = 0;
-	timeToWin = 600;
+	timeToWin = 3600;
 
 	player->SetLives(3);
 	player->SetPosition({ (float)GetScreenWidth() / 2, (float)GetScreenHeight() / 2 });
 	player->SetRotation(0.0f);
+	player->SetTripleShot(false);
+	powerUp->SetPosition({ -10,-10 });
 	bullets->clear();
 	meteors->clear();
 

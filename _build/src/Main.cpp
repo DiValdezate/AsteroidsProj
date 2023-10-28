@@ -147,6 +147,7 @@ int main(void)
             //----------------------------------------------------------------------------------    
             gamePlayManager.MeteorCollision(&meteors, &player); //Meteor vs player
             gamePlayManager.MeteorCollision(&meteors, &bullets); //Meteor vs bullets
+            gamePlayManager.PowerUpCollision(&powerUp, &player); //PowerUp vs player
 
 
             //CONDITIONS TO GAMEOVER
@@ -164,7 +165,7 @@ int main(void)
             PlayMusicStream(gamePlayManager.win);
             UpdateMusicStream(gamePlayManager.win);
 
-            gamePlayManager.InitGame(&player, &bullets, &meteors);
+            gamePlayManager.InitGame(&player, &bullets, &meteors, &powerUp);
             if (IsKeyPressed(KEY_ENTER))
                 currentScreen = TITLE;
             break;
@@ -172,7 +173,7 @@ int main(void)
             StopMusicStream(gamePlayManager.game);//Stop the previous music
             PlayMusicStream(gamePlayManager.lose);
             UpdateMusicStream(gamePlayManager.lose);
-            gamePlayManager.InitGame(&player, &bullets, &meteors);
+            gamePlayManager.InitGame(&player, &bullets, &meteors, &powerUp);
             if (IsKeyPressed(KEY_ENTER))
                 currentScreen = GAMEPLAY;
             break;
