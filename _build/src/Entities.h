@@ -20,6 +20,7 @@ class Player
 	float radius;
 	float rotation;
 	bool moving;
+	bool tripleShot;
 
 public:
 
@@ -124,6 +125,25 @@ public:
 	bool CheckCollision(Player* player);
 	bool CheckCollision(std::vector<Bullet>* bullet);
 	
+};
+
+class PowerUp
+{
+	Vector2 position;
+	bool isCollected;
+	Texture2D texture;
+	float radius;
+
+public:
+	PowerUp();
+
+	void SetPosition(Vector2 position);
+	Vector2 GetPosition();
+	bool IsCollected();
+	void SetCollected(bool value);
+	void SetTexture(Texture2D texture);
+	Texture2D GetTexture();
+	float GetRadius();
 };
 
 

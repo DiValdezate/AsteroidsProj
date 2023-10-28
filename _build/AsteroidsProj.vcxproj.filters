@@ -27,10 +27,21 @@
     <ClCompile Include="src\Title.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameplayManager.cpp" />
-    <ClCompile Include="src\Bullet.cpp" />
-    <ClCompile Include="src\EndScreen.cpp" />
-    <ClCompile Include="src\Screens.cpp" />
+    <ClCompile Include="src\Screens.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EndScreen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameplayManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PowerUp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Bullet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Entities.h">
@@ -40,7 +51,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\GameplayManager.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

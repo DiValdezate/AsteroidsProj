@@ -79,10 +79,10 @@ bool Meteor::IsMoving()
 
 void Meteor::Move()
 {
-	if (position.x > 0 && position.x <= GetScreenWidth())
+	if (position.x > 0 && position.x <= GetScreenWidth()) //Checks if the meteor is moving within the screen limits
 		position.x += speed.x;
 	else
-		position.x += speed.x *=-1;
+		position.x += speed.x *=-1; //If not, changes direction in the axis it hits (in this case, if X axis is 0 or > screenwidth)
 
 
 	if (position.y > 0 && position.y <= GetScreenHeight())
@@ -110,7 +110,7 @@ void Meteor::Hit(Texture2D* MediumText, Texture2D* SmallText, int& score)
 	}
 }
 
-bool Meteor::CheckCollision(Player* player)
+bool Meteor::CheckCollision(Player* player) //Returns true if it detects collision vs the player
 {
 	if (CheckCollisionCircles(position, radius, player->GetPosition(), player->GetRadius()))
 	{
@@ -143,7 +143,7 @@ void Meteor::GoMedium(Texture2D* texture) //We need to pass in the Medium textur
 	this->texture = *texture;	
 }
 
-void Meteor::GoSmall(Texture2D* texture) //We need to pass in the Medium texture here
+void Meteor::GoSmall(Texture2D* texture) //We need to pass in the Small texture here
 {
 	size = SMALL;
 	this->texture = *texture;

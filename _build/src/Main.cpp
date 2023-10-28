@@ -58,14 +58,13 @@ int main(void)
     //Variables initialization
     //--------------------------------------------------------------------------------------
     gameTime = 0;
-    titleYAxis = -250;
-    
+    titleYAxis = -250;    
 
-    Player player(3);
+    Player player(3);  
+    PowerUp powerUp;
     std::vector<Meteor> meteors;
     std::vector<Bullet> bullets;
-    
-    //player.SetPosition({ screenWidth / 2, screenHeight / 2 });
+
     player.SetTexture(&gamePlayManager.playerTexture);
 
     SetTargetFPS(60);
@@ -81,7 +80,7 @@ int main(void)
         {
         case LOGO:
             
-            if (gamePlayManager.gameTime >= 120)
+            if (gamePlayManager.gameTime >= 120) //Changes screen after 120 frames (2 seconds since 60 fps)
                 currentScreen = TITLE;
 
             break;
@@ -110,6 +109,8 @@ int main(void)
             }
 
             gamePlayManager.MoveMeteors(&meteors); //We move the meteors every frame
+            gamePlayManager.PowerUpSpawn(&powerUp);
+            
 
             //PLAYER INPUT
             //----------------------------------------------------------------------------------
@@ -203,6 +204,7 @@ int main(void)
             DrawPlayer(&player);
             DrawAsteroids(&meteors);
             DrawBullets(&bullets);
+            DrawPowerUp(&powerUp);
             DrawHUD(&gamePlayManager, &player);     
             break;
 

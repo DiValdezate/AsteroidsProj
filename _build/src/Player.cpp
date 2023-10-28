@@ -12,6 +12,7 @@ Player::Player(int lives)
 	radius = 15.0f;
 	rotation = 0.0f;
 	moving = false;
+	tripleShot = false;
 }
 
 Player::Player()
@@ -125,7 +126,7 @@ void Player::Hit()
 {
 	if (lives > 0)
 	{
-		SetPosition({ (float)GetScreenWidth() / 2, (float)GetScreenHeight() / 2 });
+		SetPosition({ (float)GetScreenWidth() / 2, (float)GetScreenHeight() / 2 }); //Resets the player's position to the center of the screen
 		lives--;
 
 	}

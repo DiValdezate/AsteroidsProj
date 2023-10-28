@@ -33,6 +33,7 @@ void DrawPlayer(Player* player);
 void DrawAsteroids(std::vector<Meteor>* met);
 void DrawBullets(std::vector<Bullet>* bullets);
 void DrawHUD(GameplayManager* game, Player* player);
+void DrawPowerUp(PowerUp* powerup);
 
 //Ending screen declarations
 void DrawWinScreen(GameplayManager* game);

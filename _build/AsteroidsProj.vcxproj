@@ -273,6 +273,7 @@
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\Meteor.cpp" />
+    <ClCompile Include="src\PowerUp.cpp" />
     <ClCompile Include="src\Screens.cpp" />
     <ClCompile Include="src\Title.cpp" />
   </ItemGroup>

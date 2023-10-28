@@ -5,6 +5,10 @@
 #define MAX_METEORS 25
 #define MAX_MET_SIZE 3
 
+//__________________________________
+//MANAGES ALL RESOURCES AND THE LOGIC IN THE GAME
+//__________________________________
+
 class GameplayManager
 {
 public:
@@ -35,6 +39,8 @@ public:
 	Texture2D gameOverTexture;
 	Image winImg;
 	Texture2D winTexture;
+	Image powerUpImg;
+	Texture2D powerUpTexture;
 
 	//AUDIO
 	Music menu;
@@ -52,14 +58,17 @@ public:
 	GameplayManager();
 	void LoadTextures();
 	void LoadAudio();
-	void MeteorSpawner(std::vector<Meteor>* meteors);
-	void MoveMeteors(std::vector<Meteor>* meteors);
-	void MoveBullets(std::vector<Bullet>* bullets, float rotation);
-	void BulletSpawner(std::vector<Bullet>* bullets, Player* player);
-	void MeteorCollision(std::vector<Meteor>* meteors, Player* player);
-	void MeteorCollision(std::vector<Meteor>* meteors, std::vector<Bullet>* bullets);
+	void MeteorSpawner(std::vector<Meteor>* meteors); //Creates a meteor/asteroid in a random position within the screen and stores it in the meteors list
+	void MoveMeteors(std::vector<Meteor>* meteors); //Moves every meteor in the meteors vector every frame
+	void MoveBullets(std::vector<Bullet>* bullets, float rotation); //Moves every bullet in the bulets vector every frame
+	void BulletSpawner(std::vector<Bullet>* bullets, Player* player); //Creates a bullet and stores it in the bullets vector
+	void MeteorCollision(std::vector<Meteor>* meteors, Player* player); //Checks meteor collision vs player
+	void MeteorCollision(std::vector<Meteor>* meteors, std::vector<Bullet>* bullets); //Checks meteor collision vs bullets
+	void PowerUpCollision();
 	int LevelCountDown();
 	void InitGame(Player* player, std::vector<Bullet>* bullets, std::vector<Meteor>* meteors);
 	void UnloadTextures();
+	void UnloadAudio();
+	void PowerUpSpawn(PowerUp* powerUp);
 };
 

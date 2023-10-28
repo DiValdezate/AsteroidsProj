@@ -53,9 +53,14 @@ void DrawBullets(std::vector<Bullet>* bullets)
 		DrawTextureEx(aux.GetTexture(), auxPos, 1, 0.25f, WHITE);
 		
 	}
-
 }
 
+void DrawPowerUp(PowerUp* powerup)
+{
+	Vector2 correctedPosition = { powerup->GetPosition().x - 50, powerup->GetPosition().y - 50 };
+	DrawTextureExCustom(powerup->GetTexture(), correctedPosition,0,2, WHITE);	
+	DrawCircle(powerup->GetPosition().x, powerup->GetPosition().y, powerup->GetRadius(), RED);
+}
 
 void DrawHUD(GameplayManager* game, Player* player)
 {

@@ -1,5 +1,7 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(516,5): warning MSB8004: El directorio Intermediate no termina con una barra diagonal final. Esta instancia de compilación agregará la barra diagonal porque es necesaria para que se pueda evaluar correctamente el directorio Intermediate.
-  Player.cpp
-C:\Dev\PACS\AsteroidsProj\_build\src\Player.cpp(88,40): warning C4244: '+=': conversión de 'double' a 'float'; posible pérdida de datos
-C:\Dev\PACS\AsteroidsProj\_build\src\Player.cpp(89,40): warning C4244: '-=': conversión de 'double' a 'float'; posible pérdida de datos
+  Gameplay.cpp
+C:\Dev\PACS\AsteroidsProj\_build\src\Gameplay.cpp(41,80): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Dev\PACS\AsteroidsProj\_build\src\Gameplay.cpp(41,54): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Dev\PACS\AsteroidsProj\_build\src\Gameplay.cpp(62,61): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Dev\PACS\AsteroidsProj\_build\src\Gameplay.cpp(62,35): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
   AsteroidsProj.vcxproj -> C:\Dev\PACS\AsteroidsProj\_bin\Debug\AsteroidsProj.exe

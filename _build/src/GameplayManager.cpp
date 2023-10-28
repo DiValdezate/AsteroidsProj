@@ -9,7 +9,7 @@ GameplayManager::GameplayManager()
 	invTime = 0;
 
 	score = 0;
-	timeToWin = 600;
+	timeToWin = 3600;
 	
 	logoImg = { 0 };
 	logoTexture = { 0 };
@@ -62,6 +62,9 @@ void GameplayManager::LoadTextures() //This function loads all textures before t
 
 	playerLivesTexture[0] = LoadTextureFromImage(playerLivesImg[0]);
 	playerLivesTexture[1] = LoadTextureFromImage(playerLivesImg[1]);
+
+	powerUpImg = LoadImage("resources/textures/PowerUp.png");
+	powerUpTexture = LoadTextureFromImage(powerUpImg);
 
 
 	meteorImg[0] = LoadImage("resources/textures/BigMeteor.png");
@@ -174,6 +177,17 @@ void GameplayManager::MeteorCollision(std::vector<Meteor>* meteors, std::vector<
 				meteors->erase(it);
 			}
 		}
+	}
+}
+
+
+
+void GameplayManager::PowerUpSpawn(PowerUp* powerUp)
+{
+	if (gameTime == 600)
+	{
+		powerUp->SetPosition({ (float)GetRandomValue(0,700),(float)GetRandomValue(0,300) });
+		powerUp->SetTexture(powerUpTexture);
 	}
 }
 
