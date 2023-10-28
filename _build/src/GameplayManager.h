@@ -14,6 +14,7 @@ public:
 	int score;
 	int timeToWin;
 
+	//TEXTURES
 	Image logoImg;
 	Texture2D logoTexture;
 	Image titleImg;
@@ -30,16 +31,23 @@ public:
 	Texture2D explosionTexture;
 	Image bulletImg;
 	Texture2D bulletTexture;
-
 	Image GameOverImg;
 	Texture2D GameOverTexture;
 	Image WinImg;
 	Texture2D WinTexture;
 
+	//AUDIO
+	Music Menu;
+	Music Game;
+	Music Win;
+	Music Lose;
+	
+
 public:
 
 	GameplayManager();
 	void LoadTextures();
+	void LoadAudio();
 	void MeteorSpawner(std::vector<Meteor>* meteors);
 	void MoveMeteors(std::vector<Meteor>* meteors);
 	void MoveBullets(std::vector<Bullet>* bullets, float rotation);

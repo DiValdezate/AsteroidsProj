@@ -43,11 +43,17 @@ int main(void)
     const int screenHeight = 450;
 
     InitWindow(screenWidth, screenHeight, "Asteroids");
+    InitAudioDevice();
 
     //Textures initialization
     //--------------------------------------------------------------------------------------
 
-    gamePlayManager.LoadTextures();    
+    gamePlayManager.LoadTextures(); 
+
+    //Audio initialization
+    //--------------------------------------------------------------------------------------
+    gamePlayManager.LoadAudio();
+
 
     //Variables initialization
     //--------------------------------------------------------------------------------------
@@ -82,6 +88,10 @@ int main(void)
 
         case TITLE:           
 
+            PlayMusicStream(gamePlayManager.Menu);
+            UpdateMusicStream(gamePlayManager.Menu);
+            
+
             if (IsKeyPressed(KEY_ENTER))
             {
                 currentScreen = GAMEPLAY;                
@@ -90,6 +100,8 @@ int main(void)
 
         case GAMEPLAY:            
 
+            PlayMusicStream(gamePlayManager.Game);
+            UpdateMusicStream(gamePlayManager.Game);
 
             if (gamePlayManager.gameTime % 60 == 0) //An asteroid will spawn every second
             {
@@ -145,11 +157,16 @@ int main(void)
             break;
 
         case WIN:
+            PlayMusicStream(gamePlayManager.Win);
+            UpdateMusicStream(gamePlayManager.Win);
+
             gamePlayManager.InitGame(&player, &bullets, &meteors);
             if (IsKeyPressed(KEY_ENTER))
                 currentScreen = TITLE;
             break;
         case LOSE:
+            PlayMusicStream(gamePlayManager.Lose);
+            UpdateMusicStream(gamePlayManager.Lose);
             gamePlayManager.InitGame(&player, &bullets, &meteors);
             if (IsKeyPressed(KEY_ENTER))
                 currentScreen = GAMEPLAY;

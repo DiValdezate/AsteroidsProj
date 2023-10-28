@@ -10,7 +10,7 @@ GameplayManager::GameplayManager()
 
 	score = 0;
 	timeToWin = 600;
-
+	
 	logoImg = { 0 };
 	logoTexture = { 0 };
 	titleImg = { 0 };
@@ -32,6 +32,8 @@ GameplayManager::GameplayManager()
 	WinImg = { 0 };
 	WinTexture = { 0 };
 
+	//AUDIO
+	Menu = { 0 };
 
 }
 
@@ -76,6 +78,14 @@ void GameplayManager::LoadTextures() //This function loads all textures before t
 	WinTexture = LoadTextureFromImage(WinImg);
 
 
+}
+
+void GameplayManager::LoadAudio()
+{
+	Menu = LoadMusicStream("resources/Menu.wav");
+	Game = LoadMusicStream("resources/Game.wav");
+	Win = LoadMusicStream("resources/Win.wav");
+	Lose = LoadMusicStream("resources/Lose.wav");
 }
 
 void GameplayManager::MeteorSpawner(std::vector<Meteor>* meteors)
