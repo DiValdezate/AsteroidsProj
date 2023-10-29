@@ -9,7 +9,7 @@ GameplayManager::GameplayManager()
 	invTime = 0;
 
 	score = 0;
-	timeToWin = 500;
+	timeToWin = 3600;
 	
 	logoImg = { 0 };
 	logoTexture = { 0 };

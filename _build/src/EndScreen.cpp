@@ -2,7 +2,7 @@
 
 void DrawWinScreen(GameplayManager* game)
 {
-	DrawTextureEx(game->winTexture, { 250 ,0 }, 0, 3, WHITE);
+	DrawTextureEx(game->winTexture, { 300 ,0 }, 0, 3, WHITE);
 
 }
 

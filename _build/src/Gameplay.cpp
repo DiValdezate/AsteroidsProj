@@ -26,8 +26,7 @@ void DrawAsteroids(std::vector<Meteor>* met)//Draws all asteroids at their curre
 		Meteor aux = met->at(i);
 		if (aux.IsDestroyed() == false)
 		{
-			DrawTexture(aux.GetTexture(), aux.GetPosition().x - 45, aux.GetPosition().y - 30, WHITE); //Adjusting the texture to allign the center with the position
-			//DrawCircle(aux.GetPosition().x, aux.GetPosition().y, aux.GetRadius(), RED);
+			DrawTexture(aux.GetTexture(), aux.GetPosition().x - 45, aux.GetPosition().y - 30, WHITE); //Adjusting the texture to allign the center with the position			
 		}
 	}
 }
