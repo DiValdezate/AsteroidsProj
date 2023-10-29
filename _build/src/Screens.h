@@ -27,7 +27,6 @@ void InitLogo(Texture2D texture);
 void DrawTitle(int y, Texture2D texture);
 
 //Gameplay screen declarations
-void LoadGameTextures();
 void DrawTextureExCustom(Texture2D texture, Vector2 position, float rotation, float scale, Color tint);
 void DrawPlayer(Player* player);
 void DrawAsteroids(std::vector<Meteor>* met);

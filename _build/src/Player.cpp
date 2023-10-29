@@ -63,30 +63,36 @@ void Player::SetTexture(Texture2D* texture)
 	}
 }
 
+
 Texture2D Player::GetTexture()
 {
 	return texture;
 }
+
 
 float Player::GetRotation()
 {
 	return rotation;
 }
 
+
 void Player::SetRotation(float rotation)
 {
 	this->rotation = rotation;
 }
+
 
 float Player::GetRadius()
 {
 	return radius;
 }
 
+
 void Player::SetTripleShot(bool value)
 {
 	tripleShot = value;
 }
+
 
 bool Player::GetTripleShot()
 {
@@ -100,11 +106,13 @@ void Player::Move()
 	position.y -= cos(rotation * DEG2RAD) * PLAYER_SPEED;	
 }
 
+
 void Player::TurnLeft()
 {
 	if(moving)
 		rotation -= 3.0f;
 }
+
 
 void Player::TurnRight()
 {
@@ -112,25 +120,30 @@ void Player::TurnRight()
 		rotation += 3.0f;
 }
 
+
 void Player::Kill()
 {
 	alive = false;	
 }
+
 
 bool Player::isAlive()
 {
 	return alive;
 }
 
+
 void Player::Moving(bool value)
 {
 	this->moving = value;
 }
 
+
 bool Player::IsMoving()
 {
 	return moving;
 }
+
 
 void Player::Hit()
 {

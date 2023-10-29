@@ -56,8 +56,7 @@ bool Bullet::IsActive()
 }
 
 void Bullet::SetSpeed()
-{
-	
+{	
 	position.x += sin(this->rotation * DEG2RAD) * BULLET_SPEED;
 	position.y -= cos(this->rotation * DEG2RAD) * BULLET_SPEED;
 }

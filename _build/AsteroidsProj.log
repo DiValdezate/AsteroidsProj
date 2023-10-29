@@ -1,11 +1,3 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(516,5): warning MSB8004: El directorio Intermediate no termina con una barra diagonal final. Esta instancia de compilación agregará la barra diagonal porque es necesaria para que se pueda evaluar correctamente el directorio Intermediate.
-  GameplayManager.cpp
-C:\Dev\PACS\AsteroidsProj\_build\src\GameplayManager.cpp(146,69): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Dev\PACS\AsteroidsProj\_build\src\GameplayManager.cpp(146,44): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Dev\PACS\AsteroidsProj\_build\src\GameplayManager.cpp(147,78): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Dev\PACS\AsteroidsProj\_build\src\GameplayManager.cpp(147,47): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Dev\PACS\AsteroidsProj\_build\src\GameplayManager.cpp(148,101): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Dev\PACS\AsteroidsProj\_build\src\GameplayManager.cpp(148,47): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Dev\PACS\AsteroidsProj\_build\src\GameplayManager.cpp(160,68): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Dev\PACS\AsteroidsProj\_build\src\GameplayManager.cpp(160,43): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
-  AsteroidsProj.vcxproj -> C:\Dev\PACS\AsteroidsProj\_bin\Debug\AsteroidsProj.exe
+  EndScreen.cpp
+  AsteroidsProj.vcxproj -> C:\Dev\PACS\AsteroidsProj\_bin\Release\AsteroidsProj.exe

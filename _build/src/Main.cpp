@@ -242,6 +242,7 @@ int main(void)
 
     // TODO: Unload all loaded resources at this point
     gamePlayManager.UnloadTextures();
+    gamePlayManager.UnloadAudio();
 
     CloseWindow();        // Close window and OpenGL context
     //--------------------------------------------------------------------------------------

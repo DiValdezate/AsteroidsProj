@@ -9,7 +9,7 @@ GameplayManager::GameplayManager()
 	invTime = 0;
 
 	score = 0;
-	timeToWin = 3600;
+	timeToWin = 500;
 	
 	logoImg = { 0 };
 	logoTexture = { 0 };
@@ -31,11 +31,19 @@ GameplayManager::GameplayManager()
 	gameOverTexture = { 0 };
 	winImg = { 0 };
 	winTexture = { 0 };
+	powerUpImg = { 0 };
+	powerUpTexture = { 0 };
 
 	//AUDIO
 	menu = { 0 };
+	enemyHit = { 0 };
+	playerHit = { 0 };
+	game = { 0 };
+	lose = { 0 };
+	win = { 0 };
 
 }
+
 
 void GameplayManager::LoadTextures() //This function loads all textures before the game starts
 {
@@ -83,6 +91,7 @@ void GameplayManager::LoadTextures() //This function loads all textures before t
 
 }
 
+
 void GameplayManager::LoadAudio()
 {
 	//MUSIC
@@ -98,14 +107,16 @@ void GameplayManager::LoadAudio()
 
 }
 
+
 void GameplayManager::MeteorSpawner(std::vector<Meteor>* meteors)
 {	
-	Vector2 randomPos = { (float)GetRandomValue(0,450),(float)GetRandomValue(0,850) };
+	Vector2 randomPos = { (float)GetRandomValue(0,GetScreenWidth()),(float)GetRandomValue(0,GetScreenHeight()) };
 	Meteor met;
 	met.SetPosition(&randomPos);
 	met.SetTexture(&meteorTexture[0]);
 	meteors->push_back(met);
 }
+
 
 void GameplayManager::MoveMeteors(std::vector<Meteor>* meteors)
 {
@@ -119,6 +130,7 @@ void GameplayManager::MoveMeteors(std::vector<Meteor>* meteors)
 	}
 }
 
+
 void GameplayManager::MoveBullets(std::vector<Bullet>* bullets, float rotation)
 {
 	for (int i = 0; i < bullets->size(); i++)
@@ -129,12 +141,14 @@ void GameplayManager::MoveBullets(std::vector<Bullet>* bullets, float rotation)
 			bullets->at(i).CountDown();			
 		}
 		else
-		{			
+		{	
+			//If the bullet is not active, we erase it from the bullet stack.
 			std::vector<Bullet>::iterator it = bullets->begin() + i;
 			bullets->erase(it);
 		}
 	}
 }
+
 
 void GameplayManager::BulletSpawner(std::vector<Bullet>* bullets, Player* player)
 {
@@ -145,7 +159,7 @@ void GameplayManager::BulletSpawner(std::vector<Bullet>* bullets, Player* player
 		Bullet bullet3(player->GetRotation());
 		bullet1.SetPosition(player->GetPosition().x, player->GetPosition().y);
 		bullet2.SetPosition(player->GetPosition().x + 10 , player->GetPosition().y);
-		bullet3.SetPosition(player->GetPosition().x - 10 * player->GetRotation(), player->GetPosition().y);
+		bullet3.SetPosition(player->GetPosition().x - 10, player->GetPosition().y);
 		bullet1.SetTexture(&bulletTexture);
 		bullet2.SetTexture(&bulletTexture);
 		bullet3.SetTexture(&bulletTexture);
@@ -172,14 +186,14 @@ void GameplayManager::MeteorCollision(std::vector<Meteor>* meteors, Player* play
 	{			
 		if (meteors->at(i).CheckCollision(player) && invTime >= 120) //Only true if it's been at least 2 seconds since the last hit.
 		{
-			PlaySound(playerHit);
-			std::cout << player->GetLives();			
+			PlaySound(playerHit);						
 			player->Hit();				
 			invTime = 0; //Reset the invulnerability time every hit. 
 		}
 
 	}
 }
+
 
 void GameplayManager::MeteorCollision(std::vector<Meteor>* meteors, std::vector<Bullet>* bullets) //Collision vs bullets
 {
@@ -199,6 +213,7 @@ void GameplayManager::MeteorCollision(std::vector<Meteor>* meteors, std::vector<
 	}
 }
 
+
 void GameplayManager::PowerUpCollision(PowerUp* powerUp, Player* player)
 {
 	if (CheckCollisionCircles(powerUp->GetPosition(), powerUp->GetRadius(), player->GetPosition(), player->GetRadius()))
@@ -207,7 +222,6 @@ void GameplayManager::PowerUpCollision(PowerUp* powerUp, Player* player)
 		player->SetTripleShot(true);		
 	}
 }
-
 
 
 void GameplayManager::PowerUpSpawn(PowerUp* powerUp)
@@ -219,6 +233,7 @@ void GameplayManager::PowerUpSpawn(PowerUp* powerUp)
 	}
 }
 
+
 int GameplayManager::LevelCountDown() //Returns the remaining time to survive, and if its 0 or less, returns -1, so we know we cleared the game
 {
 	if (((timeToWin - gameTime) / 60) >= 0)
@@ -226,6 +241,7 @@ int GameplayManager::LevelCountDown() //Returns the remaining time to survive, a
 	else
 		return -1;
 }
+
 
 void GameplayManager::InitGame(Player* player, std::vector<Bullet>* bullets, std::vector<Meteor>* meteors, PowerUp* powerUp)
 {
@@ -244,6 +260,7 @@ void GameplayManager::InitGame(Player* player, std::vector<Bullet>* bullets, std
 
 }
 
+
 void GameplayManager::UnloadTextures()
 {
 	UnloadImage(logoImg);
@@ -258,8 +275,36 @@ void GameplayManager::UnloadTextures()
 	UnloadImage(bulletImg);
 	UnloadImage(gameOverImg);
 	UnloadImage(winImg);
+	UnloadImage(powerUpImg);
 	
+	UnloadTexture(logoTexture);
+	UnloadTexture(titleText);
+	UnloadTexture(backgroundTexture);
+	UnloadTexture(playerTexture);
+	UnloadTexture(bulletTexture);
+	UnloadTexture(playerLivesTexture[0]);
+	UnloadTexture(playerLivesTexture[1]);
+	UnloadTexture(powerUpTexture);
+	UnloadTexture(meteorTexture[0]);
+	UnloadTexture(meteorTexture[1]);
+	UnloadTexture(meteorTexture[2]);
+	UnloadTexture(gameOverTexture);
+	UnloadTexture(winTexture);	
 }
+
+
+void GameplayManager::UnloadAudio()
+{
+	UnloadMusicStream(menu);
+	UnloadMusicStream(game);
+	UnloadMusicStream(win);
+	UnloadMusicStream(lose);
+
+	UnloadSound(shoot);
+	UnloadSound(enemyHit);
+	UnloadSound(playerHit);
+}
+
 
 
 

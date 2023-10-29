@@ -1,0 +1,10 @@
+﻿  raudio.c
+  rcore.c
+  rglfw.c
+  rmodels.c
+  rshapes.c
+  rtext.c
+  rtextures.c
+  utils.c
+  Generando código...
+  raylib.vcxproj -> C:\Dev\PACS\AsteroidsProj\_bin\Release\raylib.lib
